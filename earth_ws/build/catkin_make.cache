@@ -1,2 +1,0 @@
-beginner_tutorials
--DCATKIN_DEVEL_PREFIX=/home/earth10/robocup-navigation/earth_ws/devel -DCMAKE_INSTALL_PREFIX=/home/earth10/robocup-navigation/earth_ws/install -G Unix Makefiles
