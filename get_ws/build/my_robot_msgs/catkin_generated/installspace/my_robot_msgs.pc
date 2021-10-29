@@ -1,0 +1,8 @@
+prefix=/home/get/robocup-navigation/catkin_ws/install
+
+Name: my_robot_msgs
+Description: Description of my_robot_msgs
+Version: 0.0.0
+Cflags: -I${prefix}/include
+Libs: -L${prefix}/lib 
+Requires: actionlib_msgs roscpp rospy std_msgs message_runtime

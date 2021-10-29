@@ -1,0 +1,11 @@
+# generated from genmsg/cmake/pkg-genmsg.context.in
+
+messages_str = "/home/get/robocup-navigation/catkin_ws/src/my_robot_msgs/msg/HardwareStatus.msg;/home/get/robocup-navigation/catkin_ws/devel/share/my_robot_msgs/msg/CountUntilAction.msg;/home/get/robocup-navigation/catkin_ws/devel/share/my_robot_msgs/msg/CountUntilActionGoal.msg;/home/get/robocup-navigation/catkin_ws/devel/share/my_robot_msgs/msg/CountUntilActionResult.msg;/home/get/robocup-navigation/catkin_ws/devel/share/my_robot_msgs/msg/CountUntilActionFeedback.msg;/home/get/robocup-navigation/catkin_ws/devel/share/my_robot_msgs/msg/CountUntilGoal.msg;/home/get/robocup-navigation/catkin_ws/devel/share/my_robot_msgs/msg/CountUntilResult.msg;/home/get/robocup-navigation/catkin_ws/devel/share/my_robot_msgs/msg/CountUntilFeedback.msg;/home/get/robocup-navigation/catkin_ws/devel/share/my_robot_msgs/msg/MoveRobotAction.msg;/home/get/robocup-navigation/catkin_ws/devel/share/my_robot_msgs/msg/MoveRobotActionGoal.msg;/home/get/robocup-navigation/catkin_ws/devel/share/my_robot_msgs/msg/MoveRobotActionResult.msg;/home/get/robocup-navigation/catkin_ws/devel/share/my_robot_msgs/msg/MoveRobotActionFeedback.msg;/home/get/robocup-navigation/catkin_ws/devel/share/my_robot_msgs/msg/MoveRobotGoal.msg;/home/get/robocup-navigation/catkin_ws/devel/share/my_robot_msgs/msg/MoveRobotResult.msg;/home/get/robocup-navigation/catkin_ws/devel/share/my_robot_msgs/msg/MoveRobotFeedback.msg"
+services_str = "/home/get/robocup-navigation/catkin_ws/src/my_robot_msgs/srv/ComputeDiskArea.srv;/home/get/robocup-navigation/catkin_ws/src/my_robot_msgs/srv/SetLed.srv"
+pkg_name = "my_robot_msgs"
+dependencies_str = "actionlib_msgs;std_msgs"
+langs = "gencpp;geneus;genlisp;gennodejs;genpy"
+dep_include_paths_str = "my_robot_msgs;/home/get/robocup-navigation/catkin_ws/src/my_robot_msgs/msg;my_robot_msgs;/home/get/robocup-navigation/catkin_ws/devel/share/my_robot_msgs/msg;actionlib_msgs;/opt/ros/melodic/share/actionlib_msgs/cmake/../msg;std_msgs;/opt/ros/melodic/share/std_msgs/cmake/../msg"
+PYTHON_EXECUTABLE = "/usr/bin/python2"
+package_has_static_sources = '' == 'TRUE'
+genmsg_check_deps_script = "/opt/ros/melodic/share/genmsg/cmake/../../../lib/genmsg/genmsg_check_deps.py"

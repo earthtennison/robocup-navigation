@@ -1,0 +1,2 @@
+multi_navigation:multi_robot:my_robot_bringup:my_robot_msgs:my_robot_tutorials
+-DCATKIN_DEVEL_PREFIX=/home/get/robocup-navigation/catkin_ws/devel -DCMAKE_INSTALL_PREFIX=/home/get/robocup-navigation/catkin_ws/install -G Unix Makefiles

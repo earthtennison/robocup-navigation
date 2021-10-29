@@ -1,0 +1,12 @@
+<launch>
+  <arg name="model" default="$(env TURTLEBOT3_MODEL)"/>
+  <arg name="name_space" default="robot2"/>
+
+  <group ns = "$(arg name_space)">
+    <param name="model" value="$(arg model)"/>
+    <node pkg="turtlebot3_teleop" type="turtlebot3_teleop_key" name="turtlebot3_teleop"  output="screen">
+    <remap from="/cmd_vel" to="/$(arg name_space)/cmd_vel"/>
+    </node>
+  </group>
+
+</launch>
