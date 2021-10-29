@@ -1,0 +1,2 @@
+- setup-file:
+    local-name: /home/earth10/robocup-navigation/earth_ws/devel/setup.sh
