@@ -1,0 +1,8 @@
+prefix=/home/pirat/robocup-navigation/non_ws/install
+
+Name: turtlebot3_follower
+Description: Description of turtlebot3_follower
+Version: 1.1.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: rospy std_msgs sensor_msgs geometry_msgs nav_msgs

@@ -1,0 +1,8 @@
+prefix=/home/pirat/robocup-navigation/non_ws/devel
+
+Name: multi_navigation
+Description: Description of multi_navigation
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 
