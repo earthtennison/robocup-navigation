@@ -35,8 +35,8 @@
       <arg name="scan_topic" value="$(arg robot2_scan_topic)" />
       <arg name="odom_frame_id" value="$(arg robot2_odom_frame_id)"/>
       <arg name="base_frame_id" value="$(arg robot2_base_frame_id)" />
-      <arg name="initial_pose_x" value="-1.0"/>
-      <arg name="initial_pose_y" value="1.0"/>
+      <arg name="initial_pose_x" value="-0.5"/>
+      <arg name="initial_pose_y" value="0"/>
 
     </include>
   </group>
@@ -46,8 +46,8 @@
       <arg name="scan_topic" value="$(arg robot1_scan_topic)" />
       <arg name="odom_frame_id" value="$(arg robot1_odom_frame_id)"/>
       <arg name="base_frame_id" value="$(arg robot1_base_frame_id)" />
-      <arg name="initial_pose_x" value="1.0"/>
-      <arg name="initial_pose_y" value="1.0"/>
+      <arg name="initial_pose_x" value="0.5"/>
+      <arg name="initial_pose_y" value="0"/>
 
 
     </include>

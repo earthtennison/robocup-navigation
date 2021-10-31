@@ -1,0 +1,8 @@
+prefix=/home/pirat/robocup-navigation/non_ws/devel
+
+Name: goal_follower
+Description: Description of goal_follower
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 
