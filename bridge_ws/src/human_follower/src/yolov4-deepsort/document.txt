@@ -1,0 +1,13 @@
+Youtube References: https://www.youtube.com/watch?v=FuvQ8Melz1o&t=255s&ab_channel=TheAIGuy 
+
+1 line script run:  python object_tracker.py --video 0 --output ./outputs/webcam.avi --model yolov4 --info 
+
+Github: https://github.com/theAIGuysCode/yolov4-deepsort
+
+#this is object tracker and detector
+
+step: 
+1. cd desktop/Robocup/yolov4-deepsort(in anaconda cmd)
+2. conda activate yolov4-gpu 
+3. python object_tracker.py --video 0 --output ./outputs/webcam.avi --model yolov4 --info 
+4. video: python object_tracker.py --video ./data/video/test.mp4 --output ./outputs/demo.avi --model yolov4
