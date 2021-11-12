@@ -28,7 +28,28 @@ from deep_sort.tracker import Tracker
 from tools import generate_detections as gdet
 
 from cv_bridge import CvBridge, CvBridgeError #
-from sensor_msgs.msg import Image #
+from sensor_msgs.msg import Image, CameraInfo #
+
+#Import realsense2 library
+import pyrealsense2.pyrealsense2 as rs2
+
+#Setting variables for person following
+global found_target
+found_target = False
+global target_ID
+target_ID = None
+# global SLEEP_TIME = 5
+global x_pixel
+x_pixel = None
+global y_pixel
+y_pixel = None
+global intrinsics
+intrinsics = None
+global x_coord
+x_coord = None
+global y_coord
+y_coord = None
+
 
 
 rospy.set_param('framework', 'tf')
@@ -60,9 +81,15 @@ rospy.set_param('count', False)
 # flags.DEFINE_boolean('info', False, 'show detailed info of tracked objects')
 # flags.DEFINE_boolean('count', False, 'count objects being tracked on screen')
 
-def callback(frame):
-    frame = bridge.imgmsg_to_cv2(frame, "bgr8")
+def yolo_callback(frame):
+    global x_pixel
+    global y_pixel
+    global z_pixel
+    global found_target
+    global target_ID
+    global SLEEP_TIME
     global frame_num
+    frame = bridge.imgmsg_to_cv2(frame, "bgr8")
     frame_num = frame_num+1
     print('Frame #: ', frame_num)
     frame_size = frame.shape[:2]
@@ -180,7 +207,17 @@ def callback(frame):
     # if enable info flag then print details about each track
         if rospy.get_param('info'):
             print("Tracker ID: {}, Class: {},  BBox Coords (xmin, ymin, xmax, ymax): {}".format(str(track.track_id), class_name, (int(bbox[0]), int(bbox[1]), int(bbox[2]), int(bbox[3]))))
-
+        if not found_target:
+            target_ID = track.track_id
+            x_pixel = int((bbox[0]+bbox[2])/2)
+            y_pixel = int((bbox[1]+bbox[3])/2)
+            print("Found Person to track (ID: {})".format(target_ID))
+            print("Location of the person({}) : {} {}".format(track.track_id,x_pixel, y_pixel))
+            found_target = True
+        elif track.track_id == target_ID:
+            x_pixel = int((bbox[0]+bbox[2])/2)
+            y_pixel = int((bbox[1]+bbox[3])/2)
+            print("Location of the person({}) : {} {}".format(track.track_id,x_pixel, y_pixel))
     # calculate frames per second of running detections
     fps = 1.0 / (time.time() - start_time)
     print("FPS: %.2f" % fps)
@@ -194,6 +231,72 @@ def callback(frame):
     # if FLAGS.output:
     #     out.write(result)
     if cv2.waitKey(1) & 0xFF == ord('q'): return
+
+#Convert x,y, z from pixels to mm
+def depth_callback(frame):
+    global x_pixel
+    global y_pixel
+    global intrinsics
+    global x_coord
+    global y_coord
+    global z_coord
+    if (x_pixel is None) or (y_pixel is None):
+        return
+    try:
+        cv_image = bridge.imgmsg_to_cv2(frame, frame.encoding)
+        # pick one pixel among all the pixels with the closest range:
+        indices = np.array(np.where(cv_image == cv_image[cv_image > 0].min()))[:,0]
+        pix = (x_pixel, y_pixel)
+        pix = pix
+        line = '\rDepth at pixel(%3d, %3d): %7.1f(mm).' % (pix[0], pix[1], cv_image[pix[1], pix[0]])
+        # cv_image_array = np.array(cv_image,dtype=np.dtype('f8'))
+        # cv_image_norm = cv2.normalize(cv_image_array,cv_image_array,0,1,cv2.NORM_MINMAX)
+        # cv_image_norm = cv2.circle(cv_image_norm, (pix[1],pix[0]), radius=5,color = 255)
+        # cv2.imshow("camera",cv_image_norm)
+        # cv2.waitKey(1)
+        if intrinsics:
+            depth = cv_image[pix[1], pix[0]]
+            result = rs2.rs2_deproject_pixel_to_point(intrinsics, [pix[0], pix[1]], depth)
+            x = result[0]/1000
+            y = result[2]/1000
+            line += '  Coordinate: %8.2f %8.2f %8.2f.' % (result[0], result[1], result[2])
+            if y>=0.5:
+                x_coord = x
+                y_coord = y
+        # if (not self.pix_grade is None):
+        #     line += ' Grade: %2d' % self.pix_grade
+        line += '\r'
+        print(line)
+
+    except CvBridgeError as e:
+        print(e)
+        return
+    except ValueError as e:
+        return
+    pass
+
+#Get camera info to help convert pixels to m
+def info_callback(cameraInfo):
+    global intrinsics
+    try:
+        if intrinsics:
+            return
+        intrinsics = rs2.intrinsics()
+        intrinsics.width = cameraInfo.width
+        intrinsics.height = cameraInfo.height
+        intrinsics.ppx = cameraInfo.K[2]
+        intrinsics.ppy = cameraInfo.K[5]
+        intrinsics.fx = cameraInfo.K[0]
+        intrinsics.fy = cameraInfo.K[4]
+        if cameraInfo.distortion_model == 'plumb_bob':
+            intrinsics.model = rs2.distortion.brown_conrady
+        elif cameraInfo.distortion_model == 'equidistant':
+            intrinsics.model = rs2.distortion.kannala_brandt4
+        intrinsics.coeffs = [i for i in cameraInfo.D]
+    except CvBridgeError as e:
+        print(e)
+        return
+    pass
 
 '''def main(_argv):
     # Definition of the parameters
@@ -297,7 +400,9 @@ if __name__ == '__main__':
     frame_num = 0
     rospy.init_node('object_tracker')
     bridge = CvBridge()
-    sub = rospy.Subscriber("/camera/color/image_raw", Image , callback)
+    image_sub = rospy.Subscriber("/camera/color/image_raw", Image , yolo_callback)
+    depth_sub = rospy.Subscriber("/camera/depth/image_rect_raw", Image , depth_callback)
+    depth_info_sub = rospy.Subscriber("/camera/depth/camera_info", CameraInfo , info_callback)
     try:
         rospy.spin()
     except rospy.ROSInterruptException:
