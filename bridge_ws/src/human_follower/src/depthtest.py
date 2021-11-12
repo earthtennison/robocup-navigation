@@ -28,7 +28,7 @@ class ImageListener:
             cv_image = self.bridge.imgmsg_to_cv2(data, data.encoding)
             # pick one pixel among all the pixels with the closest range:
             indices = np.array(np.where(cv_image == cv_image[cv_image > 0].min()))[:,0]
-            pix = (round(cv_image.shape[0]/2), round(cv_image.shape[1]/2))
+            pix = (round(cv_image.shape[0]/2), round(cv_image.shape[1]))
             self.pix = pix
             line = '\rDepth at pixel(%3d, %3d): %7.1f(mm).' % (pix[0], pix[1], cv_image[pix[0], pix[1]])
             cv_image_array = np.array(cv_image,dtype=np.dtype('f8'))

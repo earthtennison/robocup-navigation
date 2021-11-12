@@ -32,6 +32,7 @@ from sensor_msgs.msg import Image, CameraInfo #
 
 #Import realsense2 library
 import pyrealsense2.pyrealsense2 as rs2
+from geometry_msgs.msg import PoseStamped
 
 #Setting variables for person following
 global found_target
@@ -267,6 +268,13 @@ def depth_callback(frame):
         #     line += ' Grade: %2d' % self.pix_grade
         line += '\r'
         print(line)
+        goal = PoseStamped()
+        goal.header.frame_id = "base_footprint"
+        goal.header.stamp = rospy.Time.now()
+        goal.pose.position.x = x_coord
+        goal.pose.position.y = y_coord
+        goal.pose.position.z = 0
+        goal_publisher.publish(goal)
 
     except CvBridgeError as e:
         print(e)
@@ -403,6 +411,7 @@ if __name__ == '__main__':
     image_sub = rospy.Subscriber("/camera/color/image_raw", Image , yolo_callback)
     depth_sub = rospy.Subscriber("/camera/depth/image_rect_raw", Image , depth_callback)
     depth_info_sub = rospy.Subscriber("/camera/depth/camera_info", CameraInfo , info_callback)
+    goal_publisher = rospy.Publisher("coordinate", PoseStamped, queue_size=10)
     try:
         rospy.spin()
     except rospy.ROSInterruptException:
