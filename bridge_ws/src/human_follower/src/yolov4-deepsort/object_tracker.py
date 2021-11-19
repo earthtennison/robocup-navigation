@@ -32,7 +32,8 @@ from sensor_msgs.msg import Image, CameraInfo #
 
 #Import realsense2 library
 import pyrealsense2.pyrealsense2 as rs2
-from geometry_msgs.msg import PoseStamped
+from geometry_msgs.msg import PoseStamped, Twist
+from std_msgs.msg import Bool
 
 #Setting variables for person following
 global found_target
@@ -50,6 +51,14 @@ global x_coord
 x_coord = None
 global y_coord
 y_coord = None
+global executing
+executing = False
+global target_lost
+target_lost = True
+global CONSECUTIVE
+CONSECUTIVE = 5
+global lost_frame
+lost_frame=0
 
 
 
@@ -90,6 +99,8 @@ def yolo_callback(frame):
     global target_ID
     global SLEEP_TIME
     global frame_num
+    global target_lost
+    global lost_frame
     frame = bridge.imgmsg_to_cv2(frame, "bgr8")
     frame_num = frame_num+1
     print('Frame #: ', frame_num)
@@ -214,11 +225,27 @@ def yolo_callback(frame):
             y_pixel = int((bbox[1]+bbox[3])/2)
             print("Found Person to track (ID: {})".format(target_ID))
             print("Location of the person({}) : {} {}".format(track.track_id,x_pixel, y_pixel))
+            target_lost = False
             found_target = True
+            lost_frame=0
         elif track.track_id == target_ID:
             x_pixel = int((bbox[0]+bbox[2])/2)
             y_pixel = int((bbox[1]+bbox[3])/2)
             print("Location of the person({}) : {} {}".format(track.track_id,x_pixel, y_pixel))
+            target_lost = False
+            lost_frame=0
+    pub = rospy.Publisher('target_lost', Bool, queue_size=1)
+    cmd_vel = rospy.Publisher('cmd_vel',Twist,queue_size=1)
+    vel = Twist()
+    vel.angular.z = 0.05
+    lost = Bool()
+    if target_lost:
+        lost_frame+=1
+    if lost_frame>=CONSECUTIVE:
+        lost.data = True
+        pub.publish(lost)
+        if not executing:
+            cmd_vel.publish(vel)
     # calculate frames per second of running detections
     fps = 1.0 / (time.time() - start_time)
     print("FPS: %.2f" % fps)
@@ -271,9 +298,13 @@ def depth_callback(frame):
         goal = PoseStamped()
         goal.header.frame_id = "base_footprint"
         goal.header.stamp = rospy.Time.now()
-        goal.pose.position.x = x_coord
-        goal.pose.position.y = y_coord
+        goal.pose.position.x = -y_coord
+        goal.pose.position.y = x_coord
         goal.pose.position.z = 0
+        goal.pose.orientation.x = 0
+        goal.pose.orientation.y = 0
+        goal.pose.orientation.z = 0
+        goal.pose.orientation.w = 1
         goal_publisher.publish(goal)
 
     except CvBridgeError as e:
@@ -305,6 +336,9 @@ def info_callback(cameraInfo):
         print(e)
         return
     pass
+def execute_callback(message):
+    global executing
+    executing = message.data
 
 '''def main(_argv):
     # Definition of the parameters
@@ -411,6 +445,7 @@ if __name__ == '__main__':
     image_sub = rospy.Subscriber("/camera/color/image_raw", Image , yolo_callback)
     depth_sub = rospy.Subscriber("/camera/depth/image_rect_raw", Image , depth_callback)
     depth_info_sub = rospy.Subscriber("/camera/depth/camera_info", CameraInfo , info_callback)
+    executing_sub = rospy.Subscriber("/executing", Bool , execute_callback)
     goal_publisher = rospy.Publisher("coordinate", PoseStamped, queue_size=10)
     try:
         rospy.spin()

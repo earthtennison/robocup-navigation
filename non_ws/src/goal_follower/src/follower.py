@@ -43,16 +43,16 @@ def movebase_client(tfBuffer, listener):
 
    # Sends the goal to the action server.
     client.send_goal(goal)
-    rate.sleep()
+
    # Waits for the server to finish performing the action.
-#     wait = client.wait_for_result()
-#    # If the result doesn't arrive, assume the Server is not available
-#     if not wait:
-#         rospy.logerr("Action server not available!")
-#         rospy.signal_shutdown("Action server not available!")
-#     else:
-#     # Result of executing the action
-#         return client.get_result()   
+    wait = client.wait_for_result()
+   # If the result doesn't arrive, assume the Server is not available
+    if not wait:
+        rospy.logerr("Action server not available!")
+        rospy.signal_shutdown("Action server not available!")
+    else:
+    # Result of executing the action
+        return client.get_result()   
 
 # If the python node is executed as main process (sourced directly)
 if __name__ == '__main__':
@@ -64,8 +64,8 @@ if __name__ == '__main__':
         rospy.sleep(5)
         while True:
             movebase_client(tfBuffer,listener)
-        # if result:
-        #     rospy.loginfo("Goal execution done!")
+            if result:
+                rospy.loginfo("Goal execution done!")
     except rospy.ROSInterruptException:
         rospy.loginfo("Navigation test finished.")
     
