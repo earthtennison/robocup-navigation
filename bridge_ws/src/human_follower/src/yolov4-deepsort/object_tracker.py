@@ -109,7 +109,7 @@ def yolo_callback(frame):
     image_data = image_data / 255.
     image_data = image_data[np.newaxis, ...].astype(np.float32)
     start_time = time.time()
-
+    target_lost = True
     # run detections on tflite if flag is set
     if rospy.get_param('framework') == 'tflite':
         interpreter.set_tensor(input_details[0]['index'], image_data)
@@ -230,7 +230,8 @@ def yolo_callback(frame):
             lost_frame=0
         elif track.track_id == target_ID:
             x_pixel = int((bbox[0]+bbox[2])/2)
-            y_pixel = int((bbox[1]+bbox[3])/2)
+            y_pixel = int((bbox[1]+
+            bbox[3])/2)
             print("Location of the person({}) : {} {}".format(track.track_id,x_pixel, y_pixel))
             target_lost = False
             lost_frame=0
@@ -239,13 +240,14 @@ def yolo_callback(frame):
     vel = Twist()
     vel.angular.z = 0.05
     lost = Bool()
+    lost.data=False
     if target_lost:
         lost_frame+=1
     if lost_frame>=CONSECUTIVE:
         lost.data = True
-        pub.publish(lost)
         if not executing:
             cmd_vel.publish(vel)
+    pub.publish(lost)
     # calculate frames per second of running detections
     fps = 1.0 / (time.time() - start_time)
     print("FPS: %.2f" % fps)
@@ -298,8 +300,8 @@ def depth_callback(frame):
         goal = PoseStamped()
         goal.header.frame_id = "base_footprint"
         goal.header.stamp = rospy.Time.now()
-        goal.pose.position.x = -y_coord
-        goal.pose.position.y = x_coord
+        goal.pose.position.x = y_coord
+        goal.pose.position.y = -x_coord
         goal.pose.position.z = 0
         goal.pose.orientation.x = 0
         goal.pose.orientation.y = 0
