@@ -1,0 +1,176 @@
+<?xml version="1.0" ?>
+<robot name="robokrub_base" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+<xacro:include filename="$(find robokrub_base_description)/urdf/materials.xacro" />
+<xacro:include filename="$(find robokrub_base_description)/urdf/robokrub_base.trans" />
+<xacro:include filename="$(find robokrub_base_description)/urdf/robokrub_base2.gazebo" />
+
+  <link name="base_footprint"/>
+
+  <joint name="base_joint" type="fixed">
+    <parent link="base_footprint"/>
+    <child link="base_link"/>
+    <origin xyz="0.0 0.0 0.010" rpy="0 0 0"/>
+  </joint>
+
+<link name="base_link">
+  <inertial>
+    <origin rpy="0 0 0" xyz="0.03510798434608034 -0.00025388317537545493 0.012289432709625061"/>
+    <mass value="84.01040703023877"/>
+    <inertia ixx="1.616977" ixy="-0.001845" ixz="-0.121953" iyy="1.334547" iyz="-0.000134" izz="2.296765"/>
+  </inertial>
+  <visual>
+    <origin rpy="0 0 0" xyz="0 0 0.1265"/>
+    <geometry>
+      <mesh filename="package://robokrub_base_description/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="steel_satin"/>
+  </visual>
+  <collision>
+    <origin rpy="0 0 0" xyz="0 0 0.1265"/>
+    <geometry>
+      <mesh filename="package://robokrub_base_description/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+ 
+<link name="Lidar_v2_1">
+  <inertial>
+    <origin rpy="0 0 0" xyz="-0.12851592549315027 0.0005322844293224716 0.02473503747750458"/>
+    <mass value="0.5737056310995899"/>
+    <inertia ixx="0.000249" ixy="-5e-06" ixz="-5.1e-05" iyy="0.000483" iyz="-3e-06" izz="0.000565"/>
+  </inertial>
+  <visual>
+    <origin rpy="0 0 0" xyz="-0.0725 -0.0 0.018617"/>
+    <geometry>
+      <mesh filename="package://robokrub_base_description/meshes/Lidar_v2_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="steel_satin"/>
+  </visual>
+  <collision>
+    <origin rpy="0 0 0" xyz="-0.0725 -0.0 0.018617"/>
+    <geometry>
+      <mesh filename="package://robokrub_base_description/meshes/Lidar_v2_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="left_fornt_wheel_v2_1">
+  <inertial>
+    <origin rpy="0 0 0" xyz="9.616326296368882e-08 -1.656811959849236e-08 -5.2603050110233696e-08"/>
+    <mass value="2.3101455174514807"/>
+    <inertia ixx="0.004333" ixy="0.0" ixz="0.0" iyy="0.008352" iyz="-0.0" izz="0.004333"/>
+  </inertial>
+  <visual>
+    <origin rpy="0 0 0" xyz="0.225 -0.15 0.178"/>
+    <geometry>
+      <mesh filename="package://robokrub_base_description/meshes/left_fornt_wheel_v2_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="steel_satin"/>
+  </visual>
+  <collision>
+    <origin rpy="0 0 0" xyz="0.225 -0.15 0.178"/>
+    <geometry>
+      <mesh filename="package://robokrub_base_description/meshes/left_fornt_wheel_v2_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="right_front_wheel_v2_1">
+  <inertial>
+    <origin rpy="0 0 0" xyz="9.616323409789018e-08 2.0359189584207016e-08 -4.9420586269166566e-08"/>
+    <mass value="2.3101462103664367"/>
+    <inertia ixx="0.004333" ixy="-0.0" ixz="0.0" iyy="0.008352" iyz="0.0" izz="0.004333"/>
+  </inertial>
+  <visual>
+    <origin rpy="0 0 0" xyz="0.225 0.15 0.178"/>
+    <geometry>
+      <mesh filename="package://robokrub_base_description/meshes/right_front_wheel_v2_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="steel_satin"/>
+  </visual>
+  <collision>
+    <origin rpy="0 0 0" xyz="0.225 0.15 0.178"/>
+    <geometry>
+      <mesh filename="package://robokrub_base_description/meshes/right_front_wheel_v2_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="right_back_wheel_v2_1">
+  <inertial>
+    <origin rpy="0 0 0" xyz="-0.000208088328511713 -0.020094775800254983 5.09203644245013e-07"/>
+    <mass value="3.700078391099556"/>
+    <inertia ixx="0.020132" ixy="-1.5e-05" ixz="-0.0" iyy="0.035215" iyz="0.0" izz="0.020163"/>
+  </inertial>
+  <visual>
+    <origin rpy="0 0 0" xyz="-0.198389 0.254965 0.1265"/>
+    <geometry>
+      <mesh filename="package://robokrub_base_description/meshes/right_back_wheel_v2_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="steel_satin"/>
+  </visual>
+  <collision>
+    <origin rpy="0 0 0" xyz="-0.198389 0.254965 0.1265"/>
+    <geometry>
+      <mesh filename="package://robokrub_base_description/meshes/right_back_wheel_v2_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<link name="Driving_Wheel_Nylon_v2_1">
+  <inertial>
+    <origin rpy="0 0 0" xyz="-0.00020972534987670488 0.020094809224150856 5.012790934801796e-07"/>
+    <mass value="3.700084951126245"/>
+    <inertia ixx="0.020132" ixy="1.5e-05" ixz="0.0" iyy="0.035215" iyz="-0.0" izz="0.020163"/>
+  </inertial>
+  <visual>
+    <origin rpy="0 0 0" xyz="-0.198389 -0.254965 0.1265"/>
+    <geometry>
+      <mesh filename="package://robokrub_base_description/meshes/Driving_Wheel_Nylon_v2_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+    <material name="steel_satin"/>
+  </visual>
+  <collision>
+    <origin rpy="0 0 0" xyz="-0.198389 -0.254965 0.1265"/>
+    <geometry>
+      <mesh filename="package://robokrub_base_description/meshes/Driving_Wheel_Nylon_v2_1.stl" scale="0.001 0.001 0.001"/>
+    </geometry>
+  </collision>
+</link>
+
+<joint name="Rigid8" type="fixed">
+  <origin rpy="0 0 0" xyz="0.0725 0.0 0.107883"/>
+  <parent link="base_link"/>
+  <child link="Lidar_v2_1"/>
+</joint>
+
+<joint name="Rev9" type="continuous">
+  <origin rpy="0 0 0" xyz="-0.225 0.15 -0.0515"/>
+  <parent link="base_link"/>
+  <child link="left_fornt_wheel_v2_1"/>
+  <axis xyz="0.0 1.0 0.0"/>
+</joint>
+
+<joint name="Rev10" type="continuous">
+  <origin rpy="0 0 0" xyz="-0.225 -0.15 -0.0515"/>
+  <parent link="base_link"/>
+  <child link="right_front_wheel_v2_1"/>
+  <axis xyz="0.0 1.0 0.0"/>
+</joint>
+
+<joint name="Rev11" type="continuous">
+  <origin rpy="0 0 0" xyz="0.198389 -0.254965 0.000629"/>
+  <parent link="base_link"/>
+  <child link="right_back_wheel_v2_1"/>
+  <axis xyz="0.0 -1.0 0.0"/>
+</joint>
+
+<joint name="Rev12" type="continuous">
+  <origin rpy="0 0 0" xyz="0.198389 0.254965 0.000629"/>
+  <parent link="base_link"/>
+  <child link="Driving_Wheel_Nylon_v2_1"/>
+  <axis xyz="0.0 -1.0 -0.0"/>
+</joint>
+
+</robot>
