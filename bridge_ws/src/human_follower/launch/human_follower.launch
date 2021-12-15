@@ -1,0 +1,8 @@
+<launch>
+  <node name="object_tracker" pkg="human_follower" type="object_tracker.py" output="screen">
+  </node>
+  <node name="human_frame" pkg="human_follwer" type="add_human_frame.py" output="screen">
+  </node>
+  <node name="follower" pkg="human_follwer" type="pose_goal2.py" output="screen">
+  </node>
+</launch>
