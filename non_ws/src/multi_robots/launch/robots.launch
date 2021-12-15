@@ -8,7 +8,7 @@
   <group ns="robot1">
     <param name="tf_prefix" value="robot1_tf" />
     <include file="$(find multi_robots)/launch/one_robot.launch" >
-      <arg name="init_pose" value="-x 0.5 -y 0 -z 0" />
+      <arg name="init_pose" value="-x 0.5 -y 20 -z 20" />
       <arg name="robot_name"  value="Robot1" />
     </include>
   </group>

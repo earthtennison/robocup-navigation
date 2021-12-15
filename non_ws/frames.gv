@@ -1,14 +1,20 @@
 digraph G {
-"base_link" -> "wheel_left_link"[label=" Broadcaster: /robot_state_publisher\nAverage rate: 25.405\nBuffer length: 4.92\nMost recent transform: 1636705251.22\nOldest transform: 1636705246.3\n"];
-"base_link" -> "imu_link"[label=" Broadcaster: /robot_state_publisher\nAverage rate: 10000.0\nBuffer length: 0.0\nMost recent transform: 0.0\nOldest transform: 0.0\n"];
-"base_footprint" -> "base_link"[label=" Broadcaster: /robot_state_publisher\nAverage rate: 10000.0\nBuffer length: 0.0\nMost recent transform: 0.0\nOldest transform: 0.0\n"];
-"base_link" -> "caster_back_link"[label=" Broadcaster: /robot_state_publisher\nAverage rate: 10000.0\nBuffer length: 0.0\nMost recent transform: 0.0\nOldest transform: 0.0\n"];
-"base_link" -> "base_scan"[label=" Broadcaster: /robot_state_publisher\nAverage rate: 10000.0\nBuffer length: 0.0\nMost recent transform: 0.0\nOldest transform: 0.0\n"];
-"map" -> "odom"[label=" Broadcaster: /amcl\nAverage rate: 5.194\nBuffer length: 4.813\nMost recent transform: 1636705251.67\nOldest transform: 1636705246.86\n"];
-"base_link" -> "wheel_right_link"[label=" Broadcaster: /robot_state_publisher\nAverage rate: 25.405\nBuffer length: 4.92\nMost recent transform: 1636705251.22\nOldest transform: 1636705246.3\n"];
-"odom" -> "base_footprint"[label=" Broadcaster: /turtlebot3_core\nAverage rate: 25.44\nBuffer length: 4.874\nMost recent transform: 1636705251.22\nOldest transform: 1636705246.35\n"];
+"robot2_tf/base_link" -> "robot2_tf/base_scan"[label=" Broadcaster: /robot2/robot_state_publisher\nAverage rate: 10000.0\nBuffer length: 0.0\nMost recent transform: 0.0\nOldest transform: 0.0\n"];
+"robot1_tf/base_link" -> "robot1_tf/imu_link"[label=" Broadcaster: /robot1/robot_state_publisher\nAverage rate: 10000.0\nBuffer length: 0.0\nMost recent transform: 0.0\nOldest transform: 0.0\n"];
+"robot1_tf/base_link" -> "robot1_tf/base_scan"[label=" Broadcaster: /robot1/robot_state_publisher\nAverage rate: 10000.0\nBuffer length: 0.0\nMost recent transform: 0.0\nOldest transform: 0.0\n"];
+"robot1_tf/odom" -> "robot1_tf/base_footprint"[label=" Broadcaster: /gazebo\nAverage rate: 30.205\nBuffer length: 4.966\nMost recent transform: 25.983\nOldest transform: 21.017\n"];
+"robot1_tf/base_link" -> "robot1_tf/wheel_left_link"[label=" Broadcaster: /robot1/robot_state_publisher\nAverage rate: 30.199\nBuffer length: 4.967\nMost recent transform: 25.984\nOldest transform: 21.017\n"];
+"robot2_tf/base_link" -> "robot2_tf/wheel_right_link"[label=" Broadcaster: /robot2/robot_state_publisher\nAverage rate: 30.205\nBuffer length: 4.966\nMost recent transform: 25.983\nOldest transform: 21.017\n"];
+"robot2_tf/base_footprint" -> "robot2_tf/base_link"[label=" Broadcaster: /robot2/robot_state_publisher\nAverage rate: 10000.0\nBuffer length: 0.0\nMost recent transform: 0.0\nOldest transform: 0.0\n"];
+"robot1_tf/base_link" -> "robot1_tf/caster_back_link"[label=" Broadcaster: /robot1/robot_state_publisher\nAverage rate: 10000.0\nBuffer length: 0.0\nMost recent transform: 0.0\nOldest transform: 0.0\n"];
+"robot2_tf/base_link" -> "robot2_tf/caster_back_link"[label=" Broadcaster: /robot2/robot_state_publisher\nAverage rate: 10000.0\nBuffer length: 0.0\nMost recent transform: 0.0\nOldest transform: 0.0\n"];
+"robot2_tf/base_link" -> "robot2_tf/wheel_left_link"[label=" Broadcaster: /robot2/robot_state_publisher\nAverage rate: 30.205\nBuffer length: 4.966\nMost recent transform: 25.983\nOldest transform: 21.017\n"];
+"robot1_tf/base_link" -> "robot1_tf/wheel_right_link"[label=" Broadcaster: /robot1/robot_state_publisher\nAverage rate: 30.199\nBuffer length: 4.967\nMost recent transform: 25.984\nOldest transform: 21.017\n"];
+"robot2_tf/odom" -> "robot2_tf/base_footprint"[label=" Broadcaster: /gazebo\nAverage rate: 30.199\nBuffer length: 4.967\nMost recent transform: 25.983\nOldest transform: 21.016\n"];
+"robot2_tf/base_link" -> "robot2_tf/imu_link"[label=" Broadcaster: /robot2/robot_state_publisher\nAverage rate: 10000.0\nBuffer length: 0.0\nMost recent transform: 0.0\nOldest transform: 0.0\n"];
+"robot1_tf/base_footprint" -> "robot1_tf/base_link"[label=" Broadcaster: /robot1/robot_state_publisher\nAverage rate: 10000.0\nBuffer length: 0.0\nMost recent transform: 0.0\nOldest transform: 0.0\n"];
 edge [style=invis];
  subgraph cluster_legend { style=bold; color=black; label ="view_frames Result";
-"Recorded at time: 1636705251.14"[ shape=plaintext ] ;
-}->"map";
+"Recorded at time: 26.014"[ shape=plaintext ] ;
+}->"robot2_tf/odom";
 }
