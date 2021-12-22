@@ -1,0 +1,23 @@
+robokrub-base-v3_controller:
+  # Publish all joint states -----------------------------------
+  joint_state_controller:
+    type: joint_state_controller/JointStateController
+    publish_rate: 50
+
+  # Position Controllers --------------------------------------
+  left-front-wheel-joint_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: left-front-wheel-joint
+    pid: {p: 100.0, i: 0.01, d: 10.0}
+  right-front-wheel-joint_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: right-front-wheel-joint
+    pid: {p: 100.0, i: 0.01, d: 10.0}
+  left-back-wheel-joint_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: left-back-wheel-joint
+    pid: {p: 100.0, i: 0.01, d: 10.0}
+  right-back-wheel-joint_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: right-back-wheel-joint
+    pid: {p: 100.0, i: 0.01, d: 10.0}
