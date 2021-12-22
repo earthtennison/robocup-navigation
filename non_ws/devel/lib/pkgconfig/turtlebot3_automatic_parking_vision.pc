@@ -1,8 +1,0 @@
-prefix=/home/pirat/robocup-navigation/non_ws/devel
-
-Name: turtlebot3_automatic_parking_vision
-Description: Description of turtlebot3_automatic_parking_vision
-Version: 1.1.0
-Cflags: 
-Libs: -L${prefix}/lib 
-Requires: rospy std_msgs sensor_msgs geometry_msgs nav_msgs ar_track_alvar ar_track_alvar_msgs
