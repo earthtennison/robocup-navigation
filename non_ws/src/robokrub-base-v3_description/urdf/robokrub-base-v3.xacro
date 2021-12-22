@@ -139,34 +139,34 @@
   </collision>
 </link>
 
-<joint name="lidar-joint" type="fixed">
+<joint name="lidar_joint" type="fixed">
   <origin rpy="0 0 0" xyz="0.0725 0.0 0.107883"/>
   <parent link="base_link"/>
   <child link="Lidar_v2_1"/>
 </joint>
 
-<joint name="left-front-wheel-joint" type="continuous">
+<joint name="left_front_wheel_joint" type="continuous">
   <origin rpy="0 0 0" xyz="-0.225 -0.15 -0.0515"/>
   <parent link="base_link"/>
   <child link="left_front_wheel_v2_1"/>
   <axis xyz="0.0 1.0 0.0"/>
 </joint>
 
-<joint name="right-front-wheel-joint" type="continuous">
+<joint name="right_front_wheel_joint" type="continuous">
   <origin rpy="0 0 0" xyz="-0.225 0.13 -0.0515"/>
   <parent link="base_link"/>
   <child link="right_fornt_wheel_v2_1"/>
   <axis xyz="0.0 -1.0 0.0"/>
 </joint>
 
-<joint name="left-back-wheel-joint" type="continuous">
+<joint name="left_back_wheel_joint" type="continuous">
   <origin rpy="0 0 0" xyz="0.2 -0.223771 0.0"/>
   <parent link="base_link"/>
   <child link="left_back_wheel_v2_1"/>
   <axis xyz="0.0 -1.0 0.0"/>
 </joint>
 
-<joint name="right-back-wheel-joint" type="continuous">
+<joint name="right_back_wheel_joint" type="continuous">
   <origin rpy="0 0 0" xyz="0.2 0.223771 0.0"/>
   <parent link="base_link"/>
   <child link="right_back_wheel_1"/>

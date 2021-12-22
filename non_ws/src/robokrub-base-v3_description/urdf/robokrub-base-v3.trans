@@ -3,43 +3,43 @@
 
 <transmission name="left-front-wheel-joint_tran">
   <type>transmission_interface/SimpleTransmission</type>
-  <joint name="left-front-wheel-joint">
+  <joint name="left_front_wheel_joint">
     <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
   </joint>
-  <actuator name="left-front-wheel-joint_actr">
+  <actuator name="left_front_wheel_joint_actr">
     <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
     <mechanicalReduction>1</mechanicalReduction>
   </actuator>
 </transmission>
 
-<transmission name="right-front-wheel-joint_tran">
+<transmission name="right_front_wheel_joint_tran">
   <type>transmission_interface/SimpleTransmission</type>
-  <joint name="right-front-wheel-joint">
+  <joint name="right_front_wheel_joint">
     <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
   </joint>
-  <actuator name="right-front-wheel-joint_actr">
+  <actuator name="right_front_wheel_joint_actr">
     <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
     <mechanicalReduction>1</mechanicalReduction>
   </actuator>
 </transmission>
 
-<transmission name="left-back-wheel-joint_tran">
+<transmission name="left_back_wheel_joint_tran">
   <type>transmission_interface/SimpleTransmission</type>
-  <joint name="left-back-wheel-joint">
+  <joint name="left_back_wheel_joint">
     <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
   </joint>
-  <actuator name="left-back-wheel-joint_actr">
+  <actuator name="left_back_wheel_joint_actr">
     <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
     <mechanicalReduction>1</mechanicalReduction>
   </actuator>
 </transmission>
 
-<transmission name="right-back-wheel-joint_tran">
+<transmission name="right_back_wheel_joint_tran">
   <type>transmission_interface/SimpleTransmission</type>
-  <joint name="right-back-wheel-joint">
+  <joint name="right_back_wheel_joint">
     <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
   </joint>
-  <actuator name="right-back-wheel-joint_actr">
+  <actuator name="right_back_wheel_joint_actr">
     <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
     <mechanicalReduction>1</mechanicalReduction>
   </actuator>

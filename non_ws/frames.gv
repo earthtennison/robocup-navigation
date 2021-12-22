@@ -1,11 +1,7 @@
 digraph G {
-"robot1_tf/base_link" -> "robot1_tf/Lidar_v2_1"[label=" Broadcaster: /robot1/robot_state_publisher\nAverage rate: 10000.0\nBuffer length: 0.0\nMost recent transform: 0.0\nOldest transform: 0.0\n"];
-"robot1_tf/base_footprint" -> "robot1_tf/base_link"[label=" Broadcaster: /robot1/robot_state_publisher\nAverage rate: 10000.0\nBuffer length: 0.0\nMost recent transform: 0.0\nOldest transform: 0.0\n"];
-"robot1_tf/base_link" -> "robot1_tf/right_back_wheel_v2_1"[label=" Broadcaster: /robot1/robot_state_publisher\nAverage rate: 30.199\nBuffer length: 4.967\nMost recent transform: 8.334\nOldest transform: 3.367\n"];
-"robot1_tf/odom" -> "robot1_tf/base_footprint"[label=" Broadcaster: /gazebo\nAverage rate: 30.199\nBuffer length: 4.967\nMost recent transform: 8.333\nOldest transform: 3.366\n"];
-"robot1_tf/base_link" -> "robot1_tf/Driving_Wheel_Nylon_v2_1"[label=" Broadcaster: /robot1/robot_state_publisher\nAverage rate: 30.199\nBuffer length: 4.967\nMost recent transform: 8.334\nOldest transform: 3.367\n"];
+"odom" -> "base_footprint"[label=" Broadcaster: /gazebo\nAverage rate: 30.199\nBuffer length: 4.934\nMost recent transform: 21.395\nOldest transform: 16.461\n"];
 edge [style=invis];
  subgraph cluster_legend { style=bold; color=black; label ="view_frames Result";
-"Recorded at time: 8.344"[ shape=plaintext ] ;
-}->"robot1_tf/odom";
+"Recorded at time: 21.428"[ shape=plaintext ] ;
+}->"odom";
 }
