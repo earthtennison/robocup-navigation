@@ -135,6 +135,7 @@ if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   include("/home/pirat/robocup-navigation/non_ws/build/goal_follower/cmake_install.cmake")
   include("/home/pirat/robocup-navigation/non_ws/build/multi_navigation/cmake_install.cmake")
   include("/home/pirat/robocup-navigation/non_ws/build/multi_robots/cmake_install.cmake")
+  include("/home/pirat/robocup-navigation/non_ws/build/robokrub3_Get/robokrub_base_description/cmake_install.cmake")
   include("/home/pirat/robocup-navigation/non_ws/build/turtlebot3_simulations/turtlebot3_fake/cmake_install.cmake")
   include("/home/pirat/robocup-navigation/non_ws/build/turtlebot3_simulations/turtlebot3_gazebo/cmake_install.cmake")
 

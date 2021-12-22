@@ -1003,6 +1003,24 @@ multi_robots/preinstall:
 .PHONY : multi_robots/preinstall
 
 #=============================================================================
+# Directory level rules for directory robokrub3_Get/robokrub_base_description
+
+# Convenience name for "all" pass in the directory.
+robokrub3_Get/robokrub_base_description/all:
+
+.PHONY : robokrub3_Get/robokrub_base_description/all
+
+# Convenience name for "clean" pass in the directory.
+robokrub3_Get/robokrub_base_description/clean:
+
+.PHONY : robokrub3_Get/robokrub_base_description/clean
+
+# Convenience name for "preinstall" pass in the directory.
+robokrub3_Get/robokrub_base_description/preinstall:
+
+.PHONY : robokrub3_Get/robokrub_base_description/preinstall
+
+#=============================================================================
 # Directory level rules for directory turtlebot3_simulations/turtlebot3_fake
 
 # Convenience name for "all" pass in the directory.
