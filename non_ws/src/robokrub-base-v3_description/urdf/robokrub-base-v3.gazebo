@@ -45,7 +45,7 @@
     </ray>
     <plugin name="gazebo_ros_lds_lfcd_controller" filename="libgazebo_ros_laser.so">
       <topicName>scan</topicName>
-      <frameName>base_scan</frameName>
+      <frameName>Lidar_v2_1</frameName>
     </plugin>
   </sensor>
   <selfCollide>true</selfCollide>

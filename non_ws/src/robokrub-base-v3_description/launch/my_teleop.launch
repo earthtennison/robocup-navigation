@@ -2,9 +2,10 @@
   <arg name="model" default="$(env TURTLEBOT3_MODEL)"/>
 
   <param name="model" value="$(arg model)"/>
-  <node pkg="turtlebot3_teleop" type="turtlebot3_teleop_key" name="turtlebot3_teleop"  output="screen">
-    <param name="scale_linear" value="2" type="double"/>
-    <param name="scale_angular" value="2" type="double"/>
+  <node pkg="robokrub-base-v3_description" type="my_teleop.py" name="turtlebot3_teleop"  output="screen">
+    <param name="scale_linear" value="0.5" type="double"/>
+    <param name="scale_angular" value="1.5" type="double"/>
+    <remap from="turtlebot_teleop_keyboard/cmd_vel" to="cmd_vel_mux/input/teleop"/>
   </node>
 
 </launch>
