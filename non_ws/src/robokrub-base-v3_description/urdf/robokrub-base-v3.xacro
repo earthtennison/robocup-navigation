@@ -138,6 +138,14 @@
     </geometry>
   </collision>
 </link>
+
+<link name="imu_link">
+  <visual>
+    <geometry>
+      <box size="0.05 0.05 0.02"/>
+    </geometry>
+  </visual>
+</link>
 <!-- -0.0725 -0.0 -0.107883 -->
 <joint name="lidar_joint" type="fixed">
   <origin rpy="0 0 0" xyz="-0.0525 0.0 0.147883"/>
@@ -171,6 +179,12 @@
   <parent link="base_link"/>
   <child link="right_back_wheel_1"/>
   <axis xyz="0.0 -1.0 0.0"/>
+</joint>
+
+<joint name="imu_joint" type="fixed">
+  <parent link="base_link"/>
+  <child link="imu_link"/>
+  <origin rpy="0 0 0" xyz="0.1 0.0 0.127883"/>
 </joint>
 
 </robot>
