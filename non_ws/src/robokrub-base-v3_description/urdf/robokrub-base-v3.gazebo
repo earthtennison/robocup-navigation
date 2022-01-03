@@ -75,7 +75,7 @@
   </sensor>
 </gazebo>
 
-<gazebo reference="depth_camera_link">
+<!-- <gazebo reference="depth_camera_link">
   <sensor name="depth_camera" type="depth">
     <update_rate>20</update_rate>
     <camera>
@@ -100,7 +100,7 @@
       <depthImageTopicName>/depth_cam/depth/image_raw</depthImageTopicName>
       <depthImageInfoTopicName>/depth_cam/depth/camera_info</depthImageInfoTopicName>
       <pointCloudTopicName>/depth_cam/depth/points</pointCloudTopicName>
-      <frameName>depth</frameName>
+      <frameName>depth_camera_link</frameName>
       <pointCloudCutoff>0.5</pointCloudCutoff>
       <pointCloudCutoffMax>3.0</pointCloudCutoffMax>
       <distortionK1>0.00000001</distortionK1>
@@ -115,7 +115,7 @@
       <hackBaseline>0</hackBaseline>
     </plugin>
   </sensor>
-</gazebo>
+</gazebo> -->
 
 <!-- <gazebo>
   <plugin name="imu_plugin" filename="libgazebo_ros_imu.so">
