@@ -8,6 +8,8 @@
           -configuration_directory $(find robokrub_karto)/config
           -configuration_basename robokrub_karto_2d.lua"
       output="screen">
+    <remap from="scan" to="/scan_filtered" />
+    <remap from="points2" to="/depth_cam/depth/points" />
   </node>
 
   <node name="cartographer_occupancy_grid_node" pkg="cartographer_ros"

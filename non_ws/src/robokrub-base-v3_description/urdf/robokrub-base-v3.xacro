@@ -146,6 +146,14 @@
     </geometry>
   </visual>
 </link>
+
+<link name="depth_camera_link">
+  <visual>
+    <geometry>
+      <box size="0.05 0.1 0.05"/>
+    </geometry>
+  </visual>
+</link>
 <!-- -0.0725 -0.0 -0.107883 -->
 <joint name="lidar_joint" type="fixed">
   <origin rpy="0 0 0" xyz="-0.0525 0.0 0.147883"/>
@@ -185,6 +193,12 @@
   <parent link="base_link"/>
   <child link="imu_link"/>
   <origin rpy="0 0 0" xyz="0.1 0.0 0.127883"/>
+</joint>
+
+<joint name="depth_camera_joint" type="fixed">
+  <origin rpy="0 0 0" xyz="-0.0525 0.0 0.3"/>
+  <parent link="base_link"/>
+  <child link="depth_camera_link"/>
 </joint>
 
 </robot>

@@ -16,6 +16,10 @@
   <!-- BEGIN ROBOT 1-->
   <node name='onebo_spawn' pkg="gazebo_ros" type="spawn_model" output="screen"
    args="-urdf -param robot_description -model robokrub"/>
+
+  <node pkg="laser_filters" type="scan_to_scan_filter_chain" output="screen" name="laser_filter">
+    <rosparam command="load" file="$(find robokrub-base-v3_description)/config/laser_filter.yaml" />
+  </node>
   
   <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" />
   <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
