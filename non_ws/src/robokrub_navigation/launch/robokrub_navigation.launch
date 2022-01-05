@@ -1,0 +1,23 @@
+<launch>
+    <!-- Arguments -->
+    <arg name="map_file" default="$(find robokrub_navigation)/maps/default_map.yaml"/>
+
+
+    <!-- Launch Map Server -->
+    <node pkg="map_server" name="map_server" type="map_server" args="$(arg map_file)"/>
+
+    <!-- Launch AMCL -->
+    <include file="$(find robokrub_navigation)/launch/amcl.launch"/>
+
+    <!-- Launch move_base -->
+    <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
+        <rosparam file="$(find robokrub_navigation)/params/costmap_common_params.yaml" command="load" ns="global_costmap" /> 
+        <rosparam file="$(find robokrub_navigation)/params/costmap_common_params.yaml" command="load" ns="local_costmap" />
+        <rosparam file="$(find robokrub_navigation)/params/local_costmap_params.yaml" command="load" />
+        <rosparam file="$(find robokrub_navigation)/params/global_costmap_params.yaml" command="load" /> 
+        <rosparam file="$(find robokrub_navigation)/params/base_local_planner_params.yaml" command="load" />
+    </node>
+
+    <node name="rviz" pkg="rviz" type="rviz" output="screen" args="-d $(find robokrub_navigation)/rviz/navigation.rviz"/>
+
+</launch>

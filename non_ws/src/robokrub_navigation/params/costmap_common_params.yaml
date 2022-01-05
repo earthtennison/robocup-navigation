@@ -1,0 +1,12 @@
+obstacle_range: 5.0
+raytrace_range: 5.5
+footprint: [[-0.22, -0.25],[-0.22, 0.20],[0.25, 0.18],[0.25, -0.15]]
+# robot_radius: 0.25
+inflation_radius: 0.1
+cost_scaling_factore: 1.0
+
+observation_sources: laser_scan_sensor point_cloud_sensor
+
+laser_scan_sensor: {sensor_frame: Lidar_v2_1, data_type: LaserScan, topic: scan, marking: true, clearing: true}
+
+point_cloud_sensor: {sensor_frame: sensor_d435_link, data_type: PointCloud2, topic: /camera/depth/points, marking: false, clearing: true}
