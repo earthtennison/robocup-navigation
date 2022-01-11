@@ -3,7 +3,7 @@ TrajectoryPlannerROS:
   min_vel_x: 0.3
   max_vel_theta: 1.5
   min_vel_theta: 0.1
-  min_in_place_vel_theta: 0.4
+  min_in_place_vel_theta: 0.1
   # backup_vel: -0.3
 
   acc_lim_theta: 3.2
@@ -12,5 +12,11 @@ TrajectoryPlannerROS:
 
   holonomic_robot: true
 
-  yaw_goal_tolerance: 0.3
-  xy_goal_tolerance: 0.3
+  yaw_goal_tolerance: 0.2
+  xy_goal_tolerance: 0.2
+
+  #Scoring for path planning
+  meter_scoring: true
+  pdist_scale: 0.7
+  gdist_scale: 0.9
+  occdist_scale: 0.2

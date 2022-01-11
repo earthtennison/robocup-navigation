@@ -1,0 +1,12 @@
+digraph G {
+"rod" -> "box"[label=" Broadcaster: /robot_state_publisher\nAverage rate: 10000.0\nBuffer length: 0.0\nMost recent transform: 0.0\nOldest transform: 0.0\n"];
+"axis" -> "body"[label=" Broadcaster: /robot_state_publisher\nAverage rate: 10.208\nBuffer length: 4.8\nMost recent transform: 1641739566.72\nOldest transform: 1641739561.92\n"];
+"body" -> "head"[label=" Broadcaster: /robot_state_publisher\nAverage rate: 10.208\nBuffer length: 4.8\nMost recent transform: 1641739566.72\nOldest transform: 1641739561.92\n"];
+"axis" -> "leg1"[label=" Broadcaster: /robot_state_publisher\nAverage rate: 10000.0\nBuffer length: 0.0\nMost recent transform: 0.0\nOldest transform: 0.0\n"];
+"axis" -> "leg2"[label=" Broadcaster: /robot_state_publisher\nAverage rate: 10000.0\nBuffer length: 0.0\nMost recent transform: 0.0\nOldest transform: 0.0\n"];
+"head" -> "rod"[label=" Broadcaster: /robot_state_publisher\nAverage rate: 10.208\nBuffer length: 4.8\nMost recent transform: 1641739566.72\nOldest transform: 1641739561.92\n"];
+edge [style=invis];
+ subgraph cluster_legend { style=bold; color=black; label ="view_frames Result";
+"Recorded at time: 1641739566.82"[ shape=plaintext ] ;
+}->"axis";
+}

@@ -1,0 +1,208 @@
+<?xml version="1.0" ?>
+<robot name="robokrub-base-v3" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <xacro:include filename="$(find robokrub-base-v3_description)/urdf/materials.xacro" />
+  <xacro:include filename="$(find robokrub-base-v3_description)/urdf/robokrub-base-v3.trans" />
+
+  <link name="base_footprint"/>
+
+  <link name="base_link">
+    <inertial>
+      <origin rpy="0 0 -3.14" xyz="0.12439966211944935 -0.00012861812803782383 0.016903695260053322"/>
+      <mass value="27.36387050855292"/>
+      <inertia ixx="0.608767" ixy="-0.000793" ixz="0.05113" iyy="0.461089" iyz="-6.3e-05" izz="0.865635"/>
+    </inertial>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://robokrub-base-v3_description/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="aluminum_satin"/>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://robokrub-base-v3_description/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <link name="Lidar_v2_1">
+    <inertial>
+      <origin rpy="0 0 -3.14" xyz="-0.13151592549315028 0.0005322844293224717 0.024735037477504607"/>
+      <mass value="0.07746853107841598"/>
+      <inertia ixx="3.4e-05" ixy="-1e-06" ixz="-7e-06" iyy="6.5e-05" iyz="-0.0" izz="7.6e-05"/>
+    </inertial>
+    <visual>
+      <origin rpy="0 0 0" xyz="0.0525 0.0 -0.147883"/>
+      <geometry>
+        <mesh filename="package://robokrub-base-v3_description/meshes/Lidar_v2_1.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="abs_white"/>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="-0.0725 -0.0 -0.107883"/>
+      <geometry>
+        <mesh filename="package://robokrub-base-v3_description/meshes/Lidar_v2_1.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <link name="left_front_wheel_v2_1">
+    <inertial>
+      <origin rpy="0 0 0" xyz="9.616323409789018e-08 2.035918955645144e-08 -4.9420586269166566e-08"/>
+      <mass value="0.273686111546597"/>
+      <inertia ixx="0.000513" ixy="-0.0" ixz="0.0" iyy="0.000989" iyz="0.0" izz="0.000513"/>
+    </inertial>
+    <visual>
+      <origin rpy="0 0 0" xyz="0.225 0.15 0.0515"/>
+      <geometry>
+        <mesh filename="package://robokrub-base-v3_description/meshes/left_front_wheel_v2_1.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="rubber_soft"/>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0.225 0.15 0.0515"/>
+      <geometry>
+        <mesh filename="package://robokrub-base-v3_description/meshes/left_front_wheel_v2_1.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <link name="right_fornt_wheel_v2_1">
+    <inertial>
+      <origin rpy="0 0 0" xyz="9.616326296368882e-08 0.01999998343188039 -5.2603050110233696e-08"/>
+      <mass value="0.2736860294560353"/>
+      <inertia ixx="0.000513" ixy="0.0" ixz="0.0" iyy="0.000989" iyz="-0.0" izz="0.000513"/>
+    </inertial>
+    <visual>
+      <origin rpy="0 0 0" xyz="0.225 -0.13 0.0515"/>
+      <geometry>
+        <mesh filename="package://robokrub-base-v3_description/meshes/right_fornt_wheel_v2_1.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="rubber_soft"/>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0.225 -0.13 0.0515"/>
+      <geometry>
+        <mesh filename="package://robokrub-base-v3_description/meshes/right_fornt_wheel_v2_1.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <link name="left_back_wheel_v2_1">
+    <inertial>
+      <origin rpy="0 0 0" xyz="-0.00020807534713865317 -0.04659456864726319 7.23315539304409e-07"/>
+      <mass value="0.5279092736345865"/>
+      <inertia ixx="0.002872" ixy="-2e-06" ixz="-0.0" iyy="0.005024" iyz="0.0" izz="0.002877"/>
+    </inertial>
+    <visual>
+      <origin rpy="0 0 0" xyz="-0.2 0.223771 -0.0"/>
+      <geometry>
+        <mesh filename="package://robokrub-base-v3_description/meshes/left_back_wheel_v2_1.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="nylon_66_white"/>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="-0.2 0.223771 -0.0"/>
+      <geometry>
+        <mesh filename="package://robokrub-base-v3_description/meshes/left_back_wheel_v2_1.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <link name="right_back_wheel_1">
+    <inertial>
+      <origin rpy="0 0 0" xyz="-0.00020971236850372832 0.048094602071158066 7.153909881192238e-07"/>
+      <mass value="0.5279102095874385"/>
+      <inertia ixx="0.002872" ixy="2e-06" ixz="0.0" iyy="0.005024" iyz="-0.0" izz="0.002877"/>
+    </inertial>
+    <visual>
+      <origin rpy="0 0 0" xyz="-0.2 -0.223771 -0.0"/>
+      <geometry>
+        <mesh filename="package://robokrub-base-v3_description/meshes/right_back_wheel_1.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="nylon_66_white"/>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="-0.2 -0.223771 -0.0"/>
+      <geometry>
+        <mesh filename="package://robokrub-base-v3_description/meshes/right_back_wheel_1.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <link name="imu_link">
+    <visual>
+      <geometry>
+        <box size="0.05 0.05 0.02"/>
+      </geometry>
+    </visual>
+  </link>
+
+  <!-- <link name="depth_camera_link">
+    <visual>
+      <geometry>
+        <box size="0.05 0.1 0.05"/>
+      </geometry>
+    </visual> -->
+  <!-- </link> -->
+  <!-- -0.0725 -0.0 -0.107883 -->
+
+<joint name="base_joint" type="fixed">
+    <parent link="base_footprint"/>
+    <child link="base_link"/>
+    <origin xyz="0.0 0.0 0.010" rpy="0 0 3.14"/>
+  </joint>
+
+  <joint name="lidar_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="-0.0525 0.0 0.147883"/>
+    <parent link="base_link"/>
+    <child link="Lidar_v2_1"/>
+  </joint>
+
+  <joint name="left_front_wheel_joint" type="continuous">
+    <origin rpy="0 0 0" xyz="-0.225 -0.15 -0.0515"/>
+    <parent link="base_link"/>
+    <child link="left_front_wheel_v2_1"/>
+    <axis xyz="0.0 1.0 0.0"/>
+  </joint>
+
+  <joint name="right_front_wheel_joint" type="continuous">
+    <origin rpy="0 0 0" xyz="-0.225 0.13 -0.0515"/>
+    <parent link="base_link"/>
+    <child link="right_fornt_wheel_v2_1"/>
+    <axis xyz="0.0 -1.0 0.0"/>
+  </joint>
+
+  <joint name="left_back_wheel_joint" type="continuous">
+    <origin rpy="0 0 0" xyz="0.2 -0.223771 0.0"/>
+    <parent link="base_link"/>
+    <child link="left_back_wheel_v2_1"/>
+    <axis xyz="0.0 -1.0 0.0"/>
+  </joint>
+
+  <joint name="right_back_wheel_joint" type="continuous">
+    <origin rpy="0 0 0" xyz="0.2 0.223771 0.0"/>
+    <parent link="base_link"/>
+    <child link="right_back_wheel_1"/>
+    <axis xyz="0.0 -1.0 0.0"/>
+  </joint>
+
+  <joint name="imu_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="imu_link"/>
+    <origin rpy="0 0 0" xyz="0.1 0.0 0.127883"/>
+  </joint>
+
+  <!-- <joint name="depth_camera_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="-0.0525 0.0 0.3"/>
+    <parent link="base_link"/>
+    <child link="depth_camera_link"/>
+  </joint> -->
+  <xacro:include filename="$(find robokrub-base-v3_description)/urdf/d435.urdf.xacro" />
+  <xacro:sensor_d435 name="sensor_d435" parent="base_link">
+    <origin xyz="-0.0525 0.0 0.3" rpy="0 0 3.14"/>
+    <!-- <origin xyz="0 0 0" rpy="${-90.0 * deg_to_rad} 0 ${-90.0 * deg_to_rad}"/> -->
+  </xacro:sensor_d435>
+</robot>
