@@ -39,9 +39,9 @@ void MotorCb( const std_msgs::Float32& float_msg){ // 10-170
   long newX = enc1.read();
   if (newX != oldX){
     feedVx = map(abs(newX-oldX),0,1000,0,90)*500/3/(newTime-oldTime);//3.14/180*WHEEL_RAD*1000/(newTime-oldTime);
-//    int8_t sign;
-//    if (newX-oldX<0) sign = -1;
-//    else sign = 1;
+    int8_t sign;
+    if (newX-oldX<0) sign = -1;
+    else sign = 1;
     oldTime = newTime;
     oldX = newX;
   }
@@ -51,7 +51,7 @@ void MotorCb( const std_msgs::Float32& float_msg){ // 10-170
   mobileBase_l_1.write(float_msg.data);
   mobileBase_l_2.write(float_msg.data);
 
-  current_vel_msg.data = feedVx;
+  current_vel_msg.data = sign*feedVx;
 
   current_vel_pub.publish(&current_vel_msg); 
 

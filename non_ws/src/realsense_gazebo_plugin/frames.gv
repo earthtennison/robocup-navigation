@@ -1,0 +1,24 @@
+digraph G {
+"sensor_d435_bottom_screw_frame" -> "sensor_d435_link"[label=" Broadcaster: /robot_state_publisher\nAverage rate: 10000.0\nBuffer length: 0.0\nMost recent transform: 0.0\nOldest transform: 0.0\n"];
+"sensor_d435_left_ir_frame" -> "sensor_d435_left_ir_optical_frame"[label=" Broadcaster: /robot_state_publisher\nAverage rate: 10000.0\nBuffer length: 0.0\nMost recent transform: 0.0\nOldest transform: 0.0\n"];
+"sensor_d435_depth_frame" -> "sensor_d435_right_ir_frame"[label=" Broadcaster: /robot_state_publisher\nAverage rate: 10000.0\nBuffer length: 0.0\nMost recent transform: 0.0\nOldest transform: 0.0\n"];
+"base_link" -> "imu_link"[label=" Broadcaster: /robot_state_publisher\nAverage rate: 10000.0\nBuffer length: 0.0\nMost recent transform: 0.0\nOldest transform: 0.0\n"];
+"sensor_d435_color_frame" -> "sensor_d435_color_optical_frame"[label=" Broadcaster: /robot_state_publisher\nAverage rate: 10000.0\nBuffer length: 0.0\nMost recent transform: 0.0\nOldest transform: 0.0\n"];
+"sensor_d435_right_ir_frame" -> "sensor_d435_right_ir_optical_frame"[label=" Broadcaster: /robot_state_publisher\nAverage rate: 10000.0\nBuffer length: 0.0\nMost recent transform: 0.0\nOldest transform: 0.0\n"];
+"base_link" -> "sensor_d435_bottom_screw_frame"[label=" Broadcaster: /robot_state_publisher\nAverage rate: 10000.0\nBuffer length: 0.0\nMost recent transform: 0.0\nOldest transform: 0.0\n"];
+"base_link" -> "left_back_wheel_v2_1"[label=" Broadcaster: /robot_state_publisher\nAverage rate: 40.282\nBuffer length: 4.965\nMost recent transform: 9.56\nOldest transform: 4.595\n"];
+"sensor_d435_depth_frame" -> "sensor_d435_depth_optical_frame"[label=" Broadcaster: /robot_state_publisher\nAverage rate: 10000.0\nBuffer length: 0.0\nMost recent transform: 0.0\nOldest transform: 0.0\n"];
+"sensor_d435_depth_frame" -> "sensor_d435_color_frame"[label=" Broadcaster: /robot_state_publisher\nAverage rate: 10000.0\nBuffer length: 0.0\nMost recent transform: 0.0\nOldest transform: 0.0\n"];
+"sensor_d435_link" -> "sensor_d435_depth_frame"[label=" Broadcaster: /robot_state_publisher\nAverage rate: 10000.0\nBuffer length: 0.0\nMost recent transform: 0.0\nOldest transform: 0.0\n"];
+"base_footprint" -> "base_link"[label=" Broadcaster: /robot_state_publisher\nAverage rate: 10000.0\nBuffer length: 0.0\nMost recent transform: 0.0\nOldest transform: 0.0\n"];
+"sensor_d435_depth_frame" -> "sensor_d435_left_ir_frame"[label=" Broadcaster: /robot_state_publisher\nAverage rate: 10000.0\nBuffer length: 0.0\nMost recent transform: 0.0\nOldest transform: 0.0\n"];
+"base_link" -> "right_back_wheel_1"[label=" Broadcaster: /robot_state_publisher\nAverage rate: 40.282\nBuffer length: 4.965\nMost recent transform: 9.56\nOldest transform: 4.595\n"];
+"base_link" -> "Lidar_v2_1"[label=" Broadcaster: /robot_state_publisher\nAverage rate: 10000.0\nBuffer length: 0.0\nMost recent transform: 0.0\nOldest transform: 0.0\n"];
+"base_link" -> "left_front_wheel_v2_1"[label=" Broadcaster: /robot_state_publisher\nAverage rate: 10.204\nBuffer length: 4.9\nMost recent transform: 9.5\nOldest transform: 4.6\n"];
+"base_link" -> "right_fornt_wheel_v2_1"[label=" Broadcaster: /robot_state_publisher\nAverage rate: 10.204\nBuffer length: 4.9\nMost recent transform: 9.5\nOldest transform: 4.6\n"];
+"odom" -> "base_footprint"[label=" Broadcaster: /gazebo\nAverage rate: 30.205\nBuffer length: 4.966\nMost recent transform: 9.56\nOldest transform: 4.594\n"];
+edge [style=invis];
+ subgraph cluster_legend { style=bold; color=black; label ="view_frames Result";
+"Recorded at time: 9.588"[ shape=plaintext ] ;
+}->"odom";
+}

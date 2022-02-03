@@ -1,0 +1,22 @@
+{
+	"folders": [
+		{
+			"path": "non_ws/src/robokrub_pid"
+		},
+		{
+			"name": "Robokrub_PID",
+			"path": "non_ws/src/robokrub_pid/Robokrub_PID"
+		}
+	],
+	"settings": {
+		"python.autoComplete.extraPaths": [
+			"/opt/ros/melodic/lib/python2.7/dist-packages"
+		],
+		"files.associations": {
+			"bitset": "cpp",
+			"forward_list": "cpp",
+			"fstream": "cpp",
+			"ostream": "cpp"
+		}
+	}
+}

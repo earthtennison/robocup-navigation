@@ -1,0 +1,9 @@
+<launch>
+
+<rosparam file="$(find robokrub_description)/launch/controller.yaml" command="load"/>
+<node args="realsense_pitch_joint_position_controller realsense_roll_joint_position_controller left_back_wheel_joint_position_controller right_back_wheel_joint_position_controller joint_state_controller " name="controller_spawner" ns="robokrub" output="screen" pkg="controller_manager" respawn="false" type="spawner"/>
+<node name="robot_state_publisher" output="screen" pkg="robot_state_publisher" respawn="false" type="robot_state_publisher">
+  <remap from="/joint_states" to="/robokrub/joint_states"/>
+</node>
+
+</launch>

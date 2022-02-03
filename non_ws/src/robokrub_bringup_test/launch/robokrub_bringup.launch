@@ -1,0 +1,21 @@
+<launch>
+  <arg default="$(find robokrub_description)/urdf/robokrub.xacro" name="model"/>
+  <arg default="false" name="gui"/>
+  <arg default="$(find robokrub_description)/launch/urdf.rviz" name="rvizconfig"/>
+  <param command="$(find xacro)/xacro $(arg model)" name="robot_description"/>
+  <param name="use_gui" value="$(arg gui)"/>
+
+  <!-- Set up TF for the robot -->
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"/>
+  <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher"/>
+
+  <!-- Open rviz for monitoring -->
+  <node args="-d $(arg rvizconfig)" name="rviz" pkg="rviz" required="true" type="rviz"/>
+
+  <!-- Run serial_node -->
+  <node name="serial_node" pkg="rosserial_python" type="serial_node.py"/>
+
+  <!-- Run LaserScan node -->
+
+</launch>
+

@@ -10,18 +10,22 @@
 #include <Servo.h>
 #include <math.h>
 #include <geometry_msgs/Twist.h>
+#include <sensor_msgs/JointState.h>
 
+float sign=1;
 Encoder enc1(2,3);
 Servo mobileBase_l_1,mobileBase_l_2;
 float feedVx = 0;
-float refVx = 0;
-int sign=0;
+float refVx = 90;
 std_msgs::Float32 cmd_vel_rc100_msg;
 std_msgs::Float32 goal_left_msg;
 std_msgs::Float32 current_vel_msg;
 ros::Publisher cmd_vel_rc100_pub("cmd_vel_rc100", &cmd_vel_rc100_msg);
 ros::Publisher goal_left_pub("goal_left", &goal_left_msg);
 ros::Publisher current_vel_pub("current_vel", &current_vel_msg);
+sensor_msgs::JointState joint_states_msg;
+
+
 
 long oldX = -999;
 unsigned long oldTime = 0;
@@ -48,7 +52,7 @@ void TwistCb( const geometry_msgs::Twist& twist_msg){ // 10-170
   float x = twist_msg.linear.x;
   float z = twist_msg.angular.z;
 
-  float goal_left = x-(z*WHEEL_DIST/2);
+  float goal_left = 5*(x-(z*WHEEL_DIST/2));
   float goal_right = x+(z*WHEEL_DIST/2);
 
   unsigned long newTime = millis();
@@ -62,8 +66,7 @@ void TwistCb( const geometry_msgs::Twist& twist_msg){ // 10-170
     long newX = enc1.read();
     if (newX != oldX){
       feedVx = map(abs(newX-oldX),0,1000,0,90)*3.14/180*WHEEL_RAD*1000/(newTime-oldTime);
-      int8_t sign;
-      if (newX-oldX<0) sign = -1;
+      if (newX-oldX>0) sign = -1;
       else sign = 1;
   //    Serial.print("Difference: "); Serial.println(map(newX-oldX,-200,200,-90,90));
   //    Serial.print("Interval: "); Serial.println(newTime-oldTime);
@@ -74,33 +77,33 @@ void TwistCb( const geometry_msgs::Twist& twist_msg){ // 10-170
     else{
       feedVx=0;
     }
-    diff_goal = goal_left-feedVx;
-    if (abs(feedVx) < abs(goal_left)-0.01){
+    diff_goal = goal_left-sign*feedVx;
+    if (abs(feedVx) < abs(goal_left)-0.1){
       nh.loginfo("NOT ENOUGH");
       if (diff_goal>0){
         nh.loginfo("ADD SPEED");
-        refVx = refVx+0.1;
+        refVx = refVx+0.01*(abs(diff_goal));
       }
       else{
         nh.loginfo("DECREASE SPEED");
-        refVx = refVx-0.1;
+        refVx = refVx-0.01*(abs(diff_goal));
       }
       
     }
     
-    else if(abs(feedVx) > abs(goal_left)+0.01){
-      nh.loginfo("TOO MUCH");
-      if (diff_goal>0){
-        nh.loginfo("DECREASE SPEED");
-        refVx = refVx-0.1;
-      }
-      else{
-        nh.loginfo("ADD SPEED");
-        refVx = refVx+0.1;
-      }
-    }
-    mobileBase_l_1.write(map(refVx,-10,10,80,100));
-    mobileBase_l_2.write(map(refVx,-10,10,80,100));
+//    else if(abs(feedVx) > abs(goal_left)+0.1){
+//      nh.loginfo("TOO MUCH");
+//      if (diff_goal<0){
+//        nh.loginfo("DECREASE SPEED");
+//        refVx = refVx-0.01*(abs(diff_goal));
+//      }
+//      else{
+//        nh.loginfo("ADD SPEED");
+//        refVx = refVx+0.01*(abs(diff_goal));
+//      }
+//    }
+    mobileBase_l_1.write(refVx);
+    mobileBase_l_2.write(refVx);
     cmd_vel_rc100_msg.data  = refVx;
     current_vel_msg.data = sign*feedVx;
   
@@ -125,6 +128,7 @@ void setup()
   nh.subscribe(sub);
   mobileBase_l_1.attach(9);
   mobileBase_l_2.attach(10);
+  joint_states_msg.header.frame_id = "EIC";
 }
 
 void loop()
@@ -145,5 +149,9 @@ void loop()
 //      mobileBase_l_2.write(map(feedVx,-3.22,3.22,10,170));
 //    }
 //  }
+  
+}
+
+void setVel(Servo motor1, Servo motor2, Encoder enc){
   
 }

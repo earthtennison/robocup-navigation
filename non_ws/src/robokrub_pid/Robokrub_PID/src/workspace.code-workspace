@@ -1,0 +1,16 @@
+{
+	"folders": [
+		{
+			"path": ".."
+		},
+		{
+			"name": "test_realsense_camera",
+			"path": "../../../robokrub_bringup/test_realsense_camera"
+		}
+	],
+	"settings": {
+		"python.autoComplete.extraPaths": [
+			"/opt/ros/melodic/lib/python2.7/dist-packages"
+		]
+	}
+}

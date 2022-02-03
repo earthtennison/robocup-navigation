@@ -9,7 +9,7 @@
           -configuration_basename robokrub_karto_2d.lua"
       output="screen">
     <remap from="scan_1" to="/scan" />
-    <remap from="scan_2" to="/realsense_scan" />
+    <!-- <remap from="scan_2" to="/realsense_scan" /> -->
     <!-- <remap from="points2" to="/camera/depth/points" /> -->
   </node>
 
