@@ -163,7 +163,7 @@ void loop() {
    //Calculate velocity from position of motor
   if(currT-prevT>50){
     velocity[0] = (posPrev[0]-pos[0])*1e3/((float) (currT-prevT));
-    velocity[1] = (posPrev[1]-pos[1])*1e3/((float) (currT-prevT));
+    velocity[1] = (pos[1]-posPrev[1])*1e3/((float) (currT-prevT));
     //Not sure about this
     velocity[0] = (velocity[0] / TICKS_PER_REV)*60;
     velocity[1] = (velocity[1] / TICKS_PER_REV)*60;

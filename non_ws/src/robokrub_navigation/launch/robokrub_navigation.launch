@@ -1,6 +1,6 @@
 <launch>
     <!-- Arguments -->
-    <arg name="map_file" default="$(find robokrub_navigation)/maps/default_map.yaml"/>
+    <arg name="map_file" default="$(find robokrub_navigation)/maps/eic_1.yaml"/>
 
 
     <!-- Launch Map Server -->

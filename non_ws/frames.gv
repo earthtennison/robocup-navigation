@@ -1,0 +1,16 @@
+digraph G {
+"base_link" -> "Hokuyo_UST-10LX__2__v1_1"[label=" Broadcaster: /robot_state_publisher\nAverage rate: 10000.0\nBuffer length: 0.0\nMost recent transform: 0.0\nOldest transform: 0.0\n"];
+"base_link" -> "left_back_wheel_1"[label=" Broadcaster: /robot_state_publisher\nAverage rate: 10.204\nBuffer length: 4.9\nMost recent transform: 1643964407.0\nOldest transform: 1643964402.1\n"];
+"base_footprint" -> "base_link"[label=" Broadcaster: /robot_state_publisher\nAverage rate: 10000.0\nBuffer length: 0.0\nMost recent transform: 0.0\nOldest transform: 0.0\n"];
+"base_link" -> "left_front_wheel_1"[label=" Broadcaster: /robot_state_publisher\nAverage rate: 10000.0\nBuffer length: 0.0\nMost recent transform: 0.0\nOldest transform: 0.0\n"];
+"odom" -> "base_footprint"[label=" Broadcaster: /serial_node\nAverage rate: 11.244\nBuffer length: 4.98\nMost recent transform: 1643964406.99\nOldest transform: 1643964402.01\n"];
+"base_link" -> "right_back_wheel_1"[label=" Broadcaster: /robot_state_publisher\nAverage rate: 10.204\nBuffer length: 4.9\nMost recent transform: 1643964407.0\nOldest transform: 1643964402.1\n"];
+"map" -> "odom"[label=" Broadcaster: /cartographer_node\nAverage rate: 10000.0\nBuffer length: 0.0\nMost recent transform: 1643964404.74\nOldest transform: 1643964404.74\n"];
+"realsense_base_1" -> "realsense_mount_1"[label=" Broadcaster: /robot_state_publisher\nAverage rate: 10.204\nBuffer length: 4.9\nMost recent transform: 1643964407.0\nOldest transform: 1643964402.1\n"];
+"base_link" -> "realsense_base_1"[label=" Broadcaster: /robot_state_publisher\nAverage rate: 10.204\nBuffer length: 4.9\nMost recent transform: 1643964407.0\nOldest transform: 1643964402.1\n"];
+"base_link" -> "right_front_wheel_1"[label=" Broadcaster: /robot_state_publisher\nAverage rate: 10000.0\nBuffer length: 0.0\nMost recent transform: 0.0\nOldest transform: 0.0\n"];
+edge [style=invis];
+ subgraph cluster_legend { style=bold; color=black; label ="view_frames Result";
+"Recorded at time: 1643964407.04"[ shape=plaintext ] ;
+}->"map";
+}

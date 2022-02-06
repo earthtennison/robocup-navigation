@@ -4,18 +4,29 @@
   <arg default="$(find robokrub_description)/launch/urdf.rviz" name="rvizconfig"/>
   <param command="$(find xacro)/xacro $(arg model)" name="robot_description"/>
   <param name="use_gui" value="$(arg gui)"/>
+  <param name="/urg_node/ip_address" value="192.168.5.4"/>
+  <param name="/urg_node/frame_id" value="Hokuyo_UST-10LX__2__v1_1"/>
+
 
   <!-- Set up TF for the robot -->
   <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"/>
   <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher"/>
 
   <!-- Open rviz for monitoring -->
-  <node args="-d $(arg rvizconfig)" name="rviz" pkg="rviz" required="true" type="rviz"/>
+  <!-- <node args="-d $(arg rvizconfig)" name="rviz" pkg="rviz" required="true" type="rviz"/> -->
 
   <!-- Run serial_node -->
-  <node name="serial_node" pkg="rosserial_python" type="serial_node.py"/>
+  <node name="serial_node" pkg="rosserial_python" type="serial_node.py">
+    <param name="port" value="/dev/ttyACM0"/>
+    <param name="baud" value="115200"/> 
+  </node>
 
   <!-- Run LaserScan node -->
+  <node name="urg_node" pkg="urg_node" type="urg_node"/>
+
+  <!-- <node pkg="laser_filters" type="scan_to_scan_filter_chain" output="screen" name="laser_filter">
+    <rosparam command="load" file="$(find robokrub_bringup_test)/config/laser_filter.yaml" />
+  </node> -->
 
 </launch>
 

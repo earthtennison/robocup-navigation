@@ -63,7 +63,7 @@ PIDController pid_right = {PID_KP,
                      SAMPLE_TIME_S};
 
 long posPrev[2] = {0, 0};
-float setRPM = 0;
+float setRPM = 7.0;
 float velocity[2] = {0.0,0.0};
 long pos[2] = {0, 0};
 
@@ -81,7 +81,7 @@ void controlMotor()
 {
   // Read Encoder
   velocity[0] = (posPrev[0]-pos[0]) * 1e3 / ((float)TIMER_INTERVAL_MS);
-  velocity[1] = (posPrev[1]-pos[1]) * 1e3 / ((float)TIMER_INTERVAL_MS);
+  velocity[1] = (pos[1]-posPrev[1]) * 1e3 / ((float)TIMER_INTERVAL_MS);
   velocity[0] = (velocity[0] / 1600.0)*60.0;
   velocity[1] = (velocity[1] / 1600.0)*60.0;
 
@@ -150,6 +150,9 @@ void setup()
   }
   else
     Serial.println(F("Can't set ITimer3. Select another freq. or timer"));
+
+  // wheel1.write(100);
+  // wheel2.write(100);
 }
 
 void loop()

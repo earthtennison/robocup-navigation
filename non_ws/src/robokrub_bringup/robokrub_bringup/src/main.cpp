@@ -73,7 +73,7 @@ void loop() {
 
     // nh.loginfo("1");
     velocity[0] = (posPrev[0]-pos[0])*1e3/((float) (currT-prevT));
-    velocity[1] = (posPrev[1]-pos[1])*1e3/((float) (currT-prevT));
+    velocity[1] = (pos[1]-posPrev[1])*1e3/((float) (currT-prevT));
     //Not sure about this
     velocity[0] = (velocity[0] / TICKS_PER_REV)*60;
     velocity[1] = (velocity[1] / TICKS_PER_REV)*60;
@@ -102,13 +102,13 @@ void loop() {
   velocity[1] = velocity[1]*2*M_PI*WHEEL_RAD/60.0;
 
   Vx=((velocity[0]+velocity[1])/2);
-  W=((velocity[0]-velocity[1])/WHEEL_DIST);
+  W=((velocity[1]-velocity[0])/WHEEL_DIST);
 
 
   // debug_msg.data = odom_child_frame;
   // debug_pub.publish(&debug_msg);
 
-  if(currT-prevT_state>100L){
+  if(currT-prevT_state>2L){
     
     publishState();
     prevT_state = currT;
@@ -135,6 +135,20 @@ void GoalCb(const geometry_msgs::Twist& twist_msg){
   goal_left = goal_left*60.0/(2*M_PI*WHEEL_RAD);
   goal_right = goal_right*60.0/(2*M_PI*WHEEL_RAD);
 
+  if(goal_left>80.0){
+    goal_left = 80.0;
+  }
+  else if(goal_left<-80.0){
+    goal_left = -80.0;
+  }
+
+  if(goal_right>80.0){
+    goal_right=80.0;
+  }
+  else if(goal_right<-80.0){
+    goal_right=-80.0;
+  }
+
   goal[0] = goal_left;
   goal[1] = goal_right;
 }
@@ -155,7 +169,7 @@ void calOdom(){
     
     odom_pose[0] += delta_s * cos(odom_pose[2] + (delta_theta / 2.0));
     odom_pose[1] += delta_s * sin(odom_pose[2] + (delta_theta / 2.0));
-    odom_pose[2] += delta_theta;
+    odom_pose[2] -= delta_theta;
     
     
     
@@ -169,6 +183,7 @@ void calOdom(){
     odom.pose.pose.position.y = odom_pose[1];
     odom.pose.pose.position.z = 0.0;
     odom.pose.pose.orientation = odom_trans.transform.rotation;
+    odom.header.stamp = nh.now();
     odom.twist.twist.linear.x = Vx;
     odom.twist.twist.angular.z = W;
 
@@ -206,7 +221,7 @@ void publishState(){
   setMotor(pwr[0], mobileBaseL);
   setMotor(pwr[1], mobileBaseR);
 
-  deltaPos[0] = pos[0]-prevPosOdom[0];
+  deltaPos[0] = prevPosOdom[0]-pos[0];
   deltaPos[1] = pos[1]-prevPosOdom[1];
   prevPosOdom[0] = pos[0];
   prevPosOdom[1] = pos[1];
