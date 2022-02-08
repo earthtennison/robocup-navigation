@@ -1,4 +1,4 @@
-image: /home/pirat/robocup-navigation/non_ws/src/robokrub_navigation/maps/eic_1.pgm
+image: /home/eic/robocup-navigation/non_ws/src/robokrub_navigation/maps/eic_1.pgm
 resolution: 0.050000
 origin: [-4.200233, -5.248315, 0.000000]
 negate: 0

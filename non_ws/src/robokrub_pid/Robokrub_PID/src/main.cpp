@@ -63,7 +63,7 @@ PIDController pid_right = {PID_KP,
                      SAMPLE_TIME_S};
 
 long posPrev[2] = {0, 0};
-float setRPM = 7.0;
+float setRPM = -7.0;
 float velocity[2] = {0.0,0.0};
 long pos[2] = {0, 0};
 

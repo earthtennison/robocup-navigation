@@ -33,6 +33,7 @@ class PoseGoal:
 
     def target_lost_callback(self,msg):
         self.target_lost = msg.data
+        # if target is not lost, executing.data is True
         if self.target_lost == False: 
             self.executing.data = True
 
@@ -41,9 +42,6 @@ class PoseGoal:
 
         pose = self.tfBuffer.lookup_transform('map','human_frame',rospy.Time.now()-rospy.Duration.from_sec(1))
         self.pub_executing.publish(self.executing)
-
-        
-
 
         goal = MoveBaseGoal()
         goal.target_pose.header.frame_id = "map"
@@ -57,8 +55,6 @@ class PoseGoal:
             rospy.loginfo("X = "+str(pose.transform.translation.x))
             rospy.loginfo("Y = "+str(pose.transform.translation.y))
 
-        
-        
         if self.target_lost == True and self.executing.data == True:
             wait = self.client.wait_for_result()
             self.executing.data = False
