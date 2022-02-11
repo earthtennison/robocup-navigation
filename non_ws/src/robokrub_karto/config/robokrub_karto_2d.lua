@@ -40,8 +40,8 @@ TRAJECTORY_BUILDER_2D.min_range = 1
 -- TRAJECTORY_BUILDER_2D.imu_gravity_time_constant = 1
 
 POSE_GRAPH.optimization_problem.huber_scale = 0.2
-POSE_GRAPH.matcher_rotation_weight = 1e2
-POSE_GRAPH.matcher_translation_weight = 1e2
+-- POSE_GRAPH.matcher_rotation_weight = 1e1
+-- POSE_GRAPH.matcher_translation_weight = 1e2
 
 POSE_GRAPH.constraint_builder.loop_closure_rotation_weight = 1e2
 -- POSE_GRAPH.constraint_builder.loop_closure_translation_weight = 1e2

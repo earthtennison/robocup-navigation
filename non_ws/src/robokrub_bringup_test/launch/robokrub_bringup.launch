@@ -6,8 +6,13 @@
   <param name="use_gui" value="$(arg gui)"/>
   <param name="/urg_node/ip_address" value="192.168.5.4"/>
   <param name="/urg_node/frame_id" value="Hokuyo_UST-10LX__2__v1_1"/>
+  <param name="/urg_node/angle_max" value="1.57"/>
+  <param name="/urg_node/angle_min" value="-1.57"/>
 
-
+  <!-- <include file="$(find realsense2_camera)/launch/rs_camera.launch">
+    <param name="publish_tf" value="False"/>
+  </include> -->
+  
   <!-- Set up TF for the robot -->
   <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"/>
   <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher"/>
@@ -17,12 +22,17 @@
 
   <!-- Run serial_node -->
   <node name="serial_node" pkg="rosserial_python" type="serial_node.py">
-    <param name="port" value="/dev/ttyUSB0"/>
+    <param name="port" value="/dev/ttyACM0"/>
     <param name="baud" value="115200"/> 
   </node>
 
   <!-- Run LaserScan node -->
   <node name="urg_node" pkg="urg_node" type="urg_node"/>
+
+  <!-- <node pkg="laser_filters" type="scan_to_scan_filter_chain" output="screen" name="laser_filter">
+    <rosparam command="load" file="$(find robokrub-base-v3_description)/config/laser_filter.yaml" />
+  </node> -->
+
 
   <!-- <node pkg="laser_filters" type="scan_to_scan_filter_chain" output="screen" name="laser_filter">
     <rosparam command="load" file="$(find robokrub_bringup_test)/config/laser_filter.yaml" />

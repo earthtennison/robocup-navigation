@@ -5,7 +5,7 @@ Panels:
     Property Tree Widget:
       Expanded:
         - /Global Options1
-        - /Image1
+        - /LaserScan1
       Splitter Ratio: 0.5
     Tree Height: 355
   - Class: rviz/Selection
@@ -26,7 +26,7 @@ Panels:
     Experimental: false
     Name: Time
     SyncMode: 0
-    SyncSource: LaserScan
+    SyncSource: ""
 Preferences:
   PromptSaveOnExit: true
 Toolbars:
@@ -85,7 +85,7 @@ Visualization Manager:
       Size (Pixels): 3
       Size (m): 0.009999999776482582
       Style: Flat Squares
-      Topic: /scan
+      Topic: /scan_filtered
       Unreliable: false
       Use Fixed Frame: true
       Use rainbow: true
@@ -99,7 +99,7 @@ Visualization Manager:
         Expand Joint Details: false
         Expand Link Details: false
         Expand Tree: false
-        Lidar_v2_1:
+        Hokuyo_UST-10LX__2__v1_1:
           Alpha: 1
           Show Axes: false
           Show Trail: false
@@ -114,17 +114,22 @@ Visualization Manager:
           Show Axes: false
           Show Trail: false
           Value: true
-        imu_link:
+        left_back_wheel_1:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        left_back_wheel_v2_1:
+        left_front_wheel_1:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        left_front_wheel_v2_1:
+        realsense_base_1:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        realsense_mount_1:
           Alpha: 1
           Show Axes: false
           Show Trail: false
@@ -134,52 +139,11 @@ Visualization Manager:
           Show Axes: false
           Show Trail: false
           Value: true
-        right_fornt_wheel_v2_1:
+        right_front_wheel_1:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        sensor_d435_bottom_screw_frame:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        sensor_d435_color_frame:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        sensor_d435_color_optical_frame:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        sensor_d435_depth_frame:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        sensor_d435_depth_optical_frame:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        sensor_d435_left_ir_frame:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        sensor_d435_left_ir_optical_frame:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        sensor_d435_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        sensor_d435_right_ir_frame:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        sensor_d435_right_ir_optical_frame:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
       Name: RobotModel
       Robot Description: robot_description
       TF Prefix: ""
@@ -206,7 +170,30 @@ Visualization Manager:
       Radius: 0.029999999329447746
       Shaft Diameter: 0.10000000149011612
       Shaft Length: 0.10000000149011612
-      Topic: /move_base/NavfnROS/plan
+      Topic: /move_base/DWAPlannerROS/global_plan
+      Unreliable: false
+      Value: true
+    - Alpha: 1
+      Buffer Length: 1
+      Class: rviz/Path
+      Color: 255; 0; 0
+      Enabled: true
+      Head Diameter: 0.30000001192092896
+      Head Length: 0.20000000298023224
+      Length: 0.30000001192092896
+      Line Style: Lines
+      Line Width: 0.029999999329447746
+      Name: Path
+      Offset:
+        X: 0
+        Y: 0
+        Z: 0
+      Pose Color: 255; 85; 255
+      Pose Style: None
+      Radius: 0.029999999329447746
+      Shaft Diameter: 0.10000000149011612
+      Shaft Length: 0.10000000149011612
+      Topic: /move_base/DWAPlannerROS/local_plan
       Unreliable: false
       Value: true
     - Class: rviz/Group
@@ -327,45 +314,27 @@ Visualization Manager:
       Frame Timeout: 15
       Frames:
         All Enabled: true
-        Lidar_v2_1:
+        Hokuyo_UST-10LX__2__v1_1:
           Value: true
         base_footprint:
           Value: true
         base_link:
           Value: true
-        imu_link:
+        left_back_wheel_1:
           Value: true
-        left_back_wheel_v2_1:
-          Value: true
-        left_front_wheel_v2_1:
+        left_front_wheel_1:
           Value: true
         map:
           Value: true
         odom:
           Value: true
+        realsense_base_1:
+          Value: true
+        realsense_mount_1:
+          Value: true
         right_back_wheel_1:
           Value: true
-        right_fornt_wheel_v2_1:
-          Value: true
-        sensor_d435_bottom_screw_frame:
-          Value: true
-        sensor_d435_color_frame:
-          Value: true
-        sensor_d435_color_optical_frame:
-          Value: true
-        sensor_d435_depth_frame:
-          Value: true
-        sensor_d435_depth_optical_frame:
-          Value: true
-        sensor_d435_left_ir_frame:
-          Value: true
-        sensor_d435_left_ir_optical_frame:
-          Value: true
-        sensor_d435_link:
-          Value: true
-        sensor_d435_right_ir_frame:
-          Value: true
-        sensor_d435_right_ir_optical_frame:
+        right_front_wheel_1:
           Value: true
       Marker Scale: 1
       Name: TF
@@ -377,37 +346,24 @@ Visualization Manager:
           odom:
             base_footprint:
               base_link:
-                Lidar_v2_1:
+                Hokuyo_UST-10LX__2__v1_1:
                   {}
-                imu_link:
+                left_back_wheel_1:
                   {}
-                left_back_wheel_v2_1:
+                left_front_wheel_1:
                   {}
-                left_front_wheel_v2_1:
-                  {}
+                realsense_base_1:
+                  realsense_mount_1:
+                    {}
                 right_back_wheel_1:
                   {}
-                right_fornt_wheel_v2_1:
+                right_front_wheel_1:
                   {}
-                sensor_d435_bottom_screw_frame:
-                  sensor_d435_link:
-                    sensor_d435_depth_frame:
-                      sensor_d435_color_frame:
-                        sensor_d435_color_optical_frame:
-                          {}
-                      sensor_d435_depth_optical_frame:
-                        {}
-                      sensor_d435_left_ir_frame:
-                        sensor_d435_left_ir_optical_frame:
-                          {}
-                      sensor_d435_right_ir_frame:
-                        sensor_d435_right_ir_optical_frame:
-                          {}
       Update Interval: 0
       Value: true
     - Class: rviz/Image
       Enabled: true
-      Image Topic: /camera/depth/image_raw
+      Image Topic: /camera/color/image_raw
       Max Value: 1
       Median window: 5
       Min Value: 0
@@ -473,7 +429,7 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/Orbit
-      Distance: 9.71407413482666
+      Distance: 9.034517288208008
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
@@ -511,5 +467,5 @@ Window Geometry:
   Views:
     collapsed: false
   Width: 1267
-  X: 423
-  Y: 125
+  X: 653
+  Y: 75

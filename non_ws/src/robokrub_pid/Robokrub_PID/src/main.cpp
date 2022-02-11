@@ -19,9 +19,9 @@ extern "C"
 #include <PID.h>
 }
 
-#define PID_KP 0.4f
-#define PID_KI 1.0f
-#define PID_KD 0.0f
+#define PID_KP_LEFT 0.4f
+#define PID_KI_LEFT 1.0f
+#define PID_KD_LEFT 0.0f
 
 #define PID_TAU 0.05f
 
@@ -32,6 +32,10 @@ extern "C"
 #define PID_LIM_MAX_INT 40.0f
 
 #define SAMPLE_TIME_S 0.05f
+
+#define PID_KP_RIGHT 0.4f
+#define PID_KI_RIGHT 0.8f
+#define PID_KD_RIGHT 0.01f
 
 //Import encoder library and servo for motor control
 #include <Encoder.h>
@@ -48,22 +52,22 @@ extern "C"
 // TimerInterrupt ITimer;
 Servo wheel1, wheel2;
 Encoder enc1(ENCA1, ENCA2), enc2(ENCB1, ENCB2);
-PIDController pid_left = {PID_KP,
-                     PID_KI, PID_KD,
+PIDController pid_left = {PID_KP_LEFT,
+                     PID_KI_LEFT, PID_KD_LEFT,
                      PID_TAU,
                      PID_LIM_MIN, PID_LIM_MAX,
                      PID_LIM_MIN_INT, PID_LIM_MAX_INT,
                      SAMPLE_TIME_S};
 
-PIDController pid_right = {PID_KP,
-                     PID_KI, PID_KD,
+PIDController pid_right = {PID_KP_RIGHT,
+                     PID_KI_RIGHT, PID_KD_RIGHT,
                      PID_TAU,
                      PID_LIM_MIN, PID_LIM_MAX,
                      PID_LIM_MIN_INT, PID_LIM_MAX_INT,
                      SAMPLE_TIME_S};
 
 long posPrev[2] = {0, 0};
-float setRPM = -7.0;
+float setRPM = -20.0;
 float velocity[2] = {0.0,0.0};
 long pos[2] = {0, 0};
 
@@ -80,8 +84,8 @@ void setMotor(int pwr, Servo wheel)
 void controlMotor()
 {
   // Read Encoder
-  velocity[0] = (posPrev[0]-pos[0]) * 1e3 / ((float)TIMER_INTERVAL_MS);
-  velocity[1] = (pos[1]-posPrev[1]) * 1e3 / ((float)TIMER_INTERVAL_MS);
+  velocity[0] = (pos[0]-posPrev[0]) * 1e3 / ((float)TIMER_INTERVAL_MS);
+  velocity[1] = (posPrev[1]-pos[1]) * 1e3 / ((float)TIMER_INTERVAL_MS);
   velocity[0] = (velocity[0] / 1600.0)*60.0;
   velocity[1] = (velocity[1] / 1600.0)*60.0;
 

@@ -162,8 +162,8 @@ void loop() {
   // angular_vel_pub.publish(&angular_vel_msg);
    //Calculate velocity from position of motor
   if(currT-prevT>50){
-    velocity[0] = (posPrev[0]-pos[0])*1e3/((float) (currT-prevT));
-    velocity[1] = (pos[1]-posPrev[1])*1e3/((float) (currT-prevT));
+    velocity[0] = (pos[0]-posPrev[0])*1e3/((float) (currT-prevT));
+    velocity[1] = (posPrev[1]-pos[1])*1e3/((float) (currT-prevT));
     //Not sure about this
     velocity[0] = (velocity[0] / TICKS_PER_REV)*60;
     velocity[1] = (velocity[1] / TICKS_PER_REV)*60;
@@ -196,8 +196,8 @@ void GoalCb(const geometry_msgs::Twist& twist_msg){
   float x = twist_msg.linear.x;
   float z = twist_msg.angular.z;
 
-  float goal_left = x+z*WHEEL_DIST/2;
-  float goal_right = x-z*WHEEL_DIST/2;
+  float goal_left = x-z*WHEEL_DIST/2;
+  float goal_right = x+z*WHEEL_DIST/2;
   // if(goal_left != goal[0] || goal_right != goal[1]){
   //   nh.loginfo("RECEIVE NEW GOAL!");
   // }
